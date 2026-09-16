@@ -22,8 +22,6 @@ class LanguageController extends ChangeNotifier {
   }
 }
 
-/// InheritedNotifier supaya LanguageController bisa diakses dari widget mana pun
-/// di bawah AppLanguageScope tanpa perlu package tambahan (mis. provider).
 class AppLanguageScope extends InheritedNotifier<LanguageController> {
   const AppLanguageScope({
     super.key,

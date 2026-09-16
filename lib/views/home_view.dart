@@ -5,6 +5,7 @@ import '../theme/app_colors.dart';
 import '../widgets/bsw_bottom_nav_bar.dart';
 import '../widgets/city_spotlight_carousel.dart';
 import '../widgets/dashboard_header.dart';
+import '../widgets/emergency_call_fab.dart';
 import '../widgets/news_card.dart';
 import '../widgets/quick_service_tile.dart';
 import '../widgets/service_category_card.dart';
@@ -12,6 +13,9 @@ import '../widgets/weather_alert_card.dart';
 import 'cctv_view.dart';
 import 'wifi_view.dart';
 import 'health_view.dart';
+import 'news_view.dart';
+import 'report_view.dart';
+import 'profile_view.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -61,7 +65,7 @@ class _HomeViewState extends State<HomeView> {
       onTap: () {},
     ),
     QuickService(
-      label: 'Transit',
+      label: 'Transportasi',
       icon: Icons.directions_bus,
       iconColor: const Color(0xFF2E7D32),
       backgroundColor: Colors.green.shade50,
@@ -242,11 +246,6 @@ class _HomeViewState extends State<HomeView> {
             ],
           ),
         ),
-      ),
-      // Bottom nav bar TETAP pakai yang lama (BswBottomNavBar).
-      bottomNavigationBar: BswBottomNavBar(
-        currentIndex: _currentNavIndex,
-        onTap: (index) => setState(() => _currentNavIndex = index),
       ),
     );
   }

@@ -33,7 +33,7 @@ class WeatherAlertCard extends StatelessWidget {
         gradient: const LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [Color(0xFF0F355C), Color(0xFF1A4B7C), Color(0xFF0B2848)],
+          colors: [Color.fromARGB(255, 255, 255, 255), Color.fromARGB(255, 255, 255, 255), Color.fromARGB(255, 255, 255, 255)],
         ),
         borderRadius: BorderRadius.circular(20),
         border: Border.all(color: Colors.white.withOpacity(0.15)),
@@ -54,7 +54,7 @@ class WeatherAlertCard extends StatelessWidget {
                       Icon(
                         Icons.thunderstorm,
                         size: 14,
-                        color: Colors.cyan.shade100,
+                        color: const Color.fromARGB(255, 7, 95, 107),
                       ),
                       const SizedBox(width: 4),
                       Text(
@@ -63,7 +63,7 @@ class WeatherAlertCard extends StatelessWidget {
                           fontSize: 11,
                           fontWeight: FontWeight.w600,
                           letterSpacing: 0.5,
-                          color: Colors.cyan.shade100,
+                          color: const Color.fromARGB(255, 2, 15, 74),
                         ),
                       ),
                     ],
@@ -92,7 +92,7 @@ class WeatherAlertCard extends StatelessWidget {
                 ),
                 child: Icon(
                   Icons.thunderstorm_rounded,
-                  color: Colors.cyan.shade100,
+                  color: const Color.fromARGB(255, 10, 4, 70),
                   size: 28,
                 ),
               ),
@@ -110,7 +110,7 @@ class WeatherAlertCard extends StatelessWidget {
                           style: const TextStyle(
                             fontSize: 28,
                             fontWeight: FontWeight.bold,
-                            color: Colors.white,
+                            color: Color.fromARGB(255, 4, 1, 62),
                           ),
                         ),
                         const SizedBox(width: 6),
@@ -119,7 +119,7 @@ class WeatherAlertCard extends StatelessWidget {
                           style: TextStyle(
                             fontSize: 13,
                             fontWeight: FontWeight.w600,
-                            color: Colors.cyan.shade100,
+                            color: const Color.fromARGB(255, 0, 43, 48),
                           ),
                         ),
                       ],
@@ -129,7 +129,7 @@ class WeatherAlertCard extends StatelessWidget {
                       '$locationLabel • $highLow',
                       style: const TextStyle(
                         fontSize: 11,
-                        color: Colors.white70,
+                        color: Color.fromARGB(179, 1, 0, 88),
                       ),
                     ),
                   ],
@@ -162,7 +162,7 @@ class WeatherAlertCard extends StatelessWidget {
                     text: TextSpan(
                       style: const TextStyle(
                         fontSize: 11,
-                        color: Color(0xFFFFE9C2),
+                        color: Color.fromARGB(255, 255, 187, 70),
                       ),
                       children: [
                         const TextSpan(
@@ -215,9 +215,9 @@ class WeatherAlertCard extends StatelessWidget {
   Widget _buildMetrics() {
     return Row(
       children: [
-        _metricChip(aqiLabel, aqiValue, valueColor: const Color(0xFF6EE7B7)),
+        _metricChip(aqiLabel, aqiValue, valueColor: const Color.fromARGB(255, 7, 0, 69)),
         const SizedBox(width: 8),
-        _metricChip('Kelembaban', humidity, valueColor: Colors.white),
+        _metricChip('Kelembaban', humidity, valueColor: const Color.fromARGB(255, 0, 5, 68)),
       ],
     );
   }
@@ -227,16 +227,17 @@ class WeatherAlertCard extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
         decoration: BoxDecoration(
-          color: Colors.black.withOpacity(0.2),
+          color: const Color.fromARGB(255, 255, 255, 255),
           borderRadius: BorderRadius.circular(10),
-          border: Border.all(color: Colors.white.withOpacity(0.1)),
+          boxShadow: const [BoxShadow(color: Colors.black26, blurRadius: 0.5, offset: Offset(0, 1))],
+          border: Border.all(color: const Color.fromARGB(255, 0, 0, 0).withOpacity(0.1)),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               label,
-              style: const TextStyle(fontSize: 10, color: Colors.white70),
+              style: const TextStyle(fontSize: 10, color: Color.fromARGB(179, 9, 0, 50)),
             ),
             const SizedBox(height: 2),
             Text(

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../views/report_view.dart';
+import '../views/home_view.dart';
+
 class BswBottomNavItemData {
   final String label;
   final IconData icon;
@@ -7,8 +10,6 @@ class BswBottomNavItemData {
   const BswBottomNavItemData({required this.label, required this.icon});
 }
 
-/// Bottom navigation bar dengan tombol Home yang "menonjol" ke atas,
-/// meniru tampilan floating active icon pada desain HTML.
 class BswBottomNavBar extends StatelessWidget {
   static const Color activeColor = Color(0xFF1E447B);
 
@@ -16,11 +17,11 @@ class BswBottomNavBar extends StatelessWidget {
   final ValueChanged<int> onTap;
 
   static const List<BswBottomNavItemData> _items = [
-    BswBottomNavItemData(label: 'Home', icon: Icons.home_rounded),
-    BswBottomNavItemData(label: 'Activity', icon: Icons.assignment_outlined),
-    BswBottomNavItemData(label: 'Services', icon: Icons.more_outlined),
-    BswBottomNavItemData(label: 'Alerts', icon: Icons.notifications_outlined),
-    BswBottomNavItemData(label: 'Profile', icon: Icons.person_outline),
+    BswBottomNavItemData(label: 'Beranda', icon: Icons.home_rounded),
+    BswBottomNavItemData(label: 'Pengaduan', icon: Icons.camera_alt_outlined),
+    BswBottomNavItemData(label: 'Darurat', icon: Icons.phone_in_talk_outlined),
+    BswBottomNavItemData(label: 'Berita', icon: Icons.notifications_outlined),
+    BswBottomNavItemData(label: 'Profil', icon: Icons.person_outline),
   ];
 
   const BswBottomNavBar({

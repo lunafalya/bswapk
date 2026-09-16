@@ -8,6 +8,7 @@ import '../widgets/language_toggle.dart';
 import 'home_view.dart';
 import 'register_view.dart';
 import 'reset_password_view.dart';
+import 'main_shell.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -46,8 +47,9 @@ class _LoginViewState extends State<LoginView> {
       await Future.delayed(const Duration(seconds: 1));
 
       if (!mounted) return;
-      Navigator.of(context)
-          .pushReplacement(MaterialPageRoute(builder: (_) => const HomeView()));
+      Navigator.of(
+        context,
+      ).pushReplacement(MaterialPageRoute(builder: (_) => const MainShell()));
     } catch (e) {
       if (!mounted) return;
       ScaffoldMessenger.of(context)
@@ -63,8 +65,9 @@ class _LoginViewState extends State<LoginView> {
       await Future.delayed(const Duration(seconds: 1));
 
       if (!mounted) return;
-      Navigator.of(context)
-          .pushReplacement(MaterialPageRoute(builder: (_) => const HomeView()));
+      Navigator.of(
+        context,
+      ).pushReplacement(MaterialPageRoute(builder: (_) => const MainShell()));
     } catch (e) {
       if (!mounted) return;
       ScaffoldMessenger.of(context)
@@ -77,7 +80,7 @@ class _LoginViewState extends State<LoginView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.surfaceContainerHigh,
+      backgroundColor: const Color.fromARGB(255, 255, 255, 255),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
