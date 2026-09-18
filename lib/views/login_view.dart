@@ -40,10 +40,6 @@ class _LoginViewState extends State<LoginView> {
 
     setState(() => _isLoading = true);
     try {
-      // await AuthService().login(
-      //   username: _usernameController.text.trim(),
-      //   password: _passwordController.text,
-      // );
       await Future.delayed(const Duration(seconds: 1));
 
       if (!mounted) return;
