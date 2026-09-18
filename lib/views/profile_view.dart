@@ -50,24 +50,55 @@ class ProfileView extends StatelessWidget {
                 padding: const EdgeInsets.fromLTRB(24, 28, 24, 24),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
+
                   children: [
                     _ProfileMenuTile(
                       icon: Icons.privacy_tip_outlined,
                       label: 'Data Diri',
                       onTap: () {
                         Navigator.of(context).push(
-                          MaterialPageRoute(builder: (_) => const DataView()),
+                          PageRouteBuilder(
+                            opaque: false, // Memuat halaman dengan latar belakang transparan
+                            barrierDismissible: true,
+                            transitionDuration: const Duration(
+                              milliseconds: 400,
+                            ),
+                            reverseTransitionDuration: const Duration(
+                              milliseconds: 350,
+                            ),
+                            pageBuilder:
+                                (context, animation, secondaryAnimation) {
+                                  return FadeTransition(
+                                    opacity: animation,
+                                    child: const DataView(),
+                                  );
+                                },
+                          ),
                         );
                       },
                     ),
                     const SizedBox(height: 12),
                     _ProfileMenuTile(
-                      icon: Icons.lock_outline,
+                      icon: Icons.privacy_tip_outlined,
                       label: 'Kata Sandi',
                       onTap: () {
                         Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (_) => const PasswordView(),
+                          PageRouteBuilder(
+                            opaque: false, // Memuat halaman dengan latar belakang transparan
+                            barrierDismissible: true,
+                            transitionDuration: const Duration(
+                              milliseconds: 400,
+                            ),
+                            reverseTransitionDuration: const Duration(
+                              milliseconds: 350,
+                            ),
+                            pageBuilder:
+                                (context, animation, secondaryAnimation) {
+                                  return FadeTransition(
+                                    opacity: animation,
+                                    child: const PasswordView(),
+                                  );
+                                },
                           ),
                         );
                       },
@@ -314,7 +345,7 @@ class _ProfileMenuTile extends StatelessWidget {
           children: [
             Icon(
               icon,
-              size: 24,
+              size: 20,
               color: color == AppColors.error ? color : AppColors.primary,
             ),
             const SizedBox(width: 16),
@@ -322,7 +353,7 @@ class _ProfileMenuTile extends StatelessWidget {
               child: Text(
                 label.toUpperCase(),
                 style: TextStyle(
-                  fontSize: 14,
+                  fontSize: 12,
                   fontWeight: FontWeight.bold,
                   color: color,
                 ),

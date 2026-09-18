@@ -3,12 +3,6 @@ import 'package:flutter/material.dart';
 import '../models/emergency_contact.dart';
 import '../theme/app_colors.dart';
 
-/// FAB darurat (mengambang di atas BswBottomNavBar) yang membuka bottom
-/// sheet berisi daftar kontak panggilan darurat.
-///
-/// TODO: ganti aksi `onTap` tiap [EmergencyContact] agar benar-benar
-/// melakukan panggilan, mis. lewat package `url_launcher`:
-///   launchUrl(Uri.parse('tel:${contact.number}'));
 class EmergencyCallFab extends StatelessWidget {
   const EmergencyCallFab({super.key, this.contacts = defaultEmergencyContacts});
 
@@ -21,12 +15,17 @@ class EmergencyCallFab extends StatelessWidget {
       backgroundColor: AppColors.error,
       elevation: 4,
       shape: const CircleBorder(),
-      onPressed: () => _showEmergencySheet(context),
-      child: const Icon(Icons.phone_in_talk_rounded, color: Colors.white, size: 28),
+      onPressed: () => showEmergencySheet(context),
+      child: const Icon(
+        Icons.phone_in_talk_rounded,
+        color: Colors.white,
+        size: 28,
+      ),
     );
   }
 
-  void _showEmergencySheet(BuildContext context) {
+  // Diubah dari private (_showEmergencySheet) menjadi publik (showEmergencySheet)
+  void showEmergencySheet(BuildContext context) {
     showModalBottomSheet(
       context: context,
       shape: const RoundedRectangleBorder(
@@ -61,7 +60,7 @@ class EmergencyCallFab extends StatelessWidget {
                     subtitle: Text(contact.number),
                     trailing: const Icon(Icons.call, color: AppColors.error),
                     onTap: () {
-                      // TODO: launchUrl(Uri.parse('tel:${contact.number}'));
+                      // TODO: Tambahkan url_launcher di sini untuk melakukan dial otomatis
                       Navigator.of(sheetContext).pop();
                     },
                   ),
