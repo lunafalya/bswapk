@@ -139,7 +139,8 @@ class _NewsViewState extends State<NewsView> {
 
   Widget _buildCarousel() {
     return SizedBox(
-      height: 260,
+      height: 200,
+      width: 150,
       child: PageView.builder(
         controller: _carouselController,
         itemCount: _carouselItems.length,

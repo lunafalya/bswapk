@@ -5,7 +5,7 @@ import '../widgets/bsw_bottom_nav_bar.dart';
 import 'home_view.dart';
 import 'cctv_view.dart';
 import 'wifi_view.dart';
-import 'health_view.dart';
+import 'bpjs_view.dart';
 import 'news_view.dart';
 import 'report_view.dart';
 import 'profile_view.dart';

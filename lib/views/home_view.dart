@@ -8,14 +8,14 @@ import '../widgets/dashboard_header.dart';
 import '../widgets/emergency_call_fab.dart';
 import '../widgets/news_card.dart';
 import '../widgets/quick_service_tile.dart';
-import '../widgets/service_category_card.dart';
 import '../widgets/weather_alert_card.dart';
 import 'cctv_view.dart';
 import 'wifi_view.dart';
-import 'health_view.dart';
+import 'bpjs_view.dart';
 import 'news_view.dart';
 import 'report_view.dart';
 import 'profile_view.dart';
+import 'all_service_view.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -65,7 +65,7 @@ class _HomeViewState extends State<HomeView> {
       onTap: () {},
     ),
     QuickService(
-      label: 'Transportasi',
+      label: 'Rute',
       icon: Icons.directions_bus,
       iconColor: const Color(0xFF2E7D32),
       backgroundColor: Colors.green.shade50,
@@ -79,7 +79,7 @@ class _HomeViewState extends State<HomeView> {
       onTap: () {},
     ),
     QuickService(
-      label: 'Kesehatan',
+      label: 'BPJS',
       icon: Icons.medical_services,
       iconColor: const Color(0xFFC62828),
       backgroundColor: Colors.red.shade50,
@@ -120,74 +120,14 @@ class _HomeViewState extends State<HomeView> {
       icon: Icons.grid_view,
       iconColor: AppColors.onSurfaceVariant,
       backgroundColor: AppColors.surfaceContainerHigh,
-      onTap: () {},
-    ),
-  ];
-
-  List<ServiceCategory> get _categories => [
-    ServiceCategory(
-      title: 'Kesehatan',
-      subtitle: 'RSUD, BPJS, Faskes',
-      icon: Icons.health_and_safety,
-      iconColor: const Color(0xFFC62828),
-      backgroundColor: Colors.red.shade50,
-      onTap: () {},
-    ),
-    ServiceCategory(
-      title: 'Transportasi',
-      subtitle: 'BisKita, Angkot, Rute',
-      icon: Icons.directions_transit,
-      iconColor: const Color(0xFF2E7D32),
-      backgroundColor: Colors.green.shade50,
-      onTap: () {},
-    ),
-    ServiceCategory(
-      title: 'Pemerintahan',
-      subtitle: 'Kelurahan, Regulasi',
-      icon: Icons.account_balance,
-      iconColor: AppColors.primary,
-      backgroundColor: Colors.blue.shade50,
-      onTap: () {},
-    ),
-    ServiceCategory(
-      title: 'Kependudukan',
-      subtitle: 'KTP, Akta, KK Online',
-      icon: Icons.assignment_ind,
-      iconColor: const Color(0xFF00695C),
-      backgroundColor: Colors.teal.shade50,
-      onTap: () {},
-    ),
-    ServiceCategory(
-      title: 'Sosial & Warga',
-      subtitle: 'Bansos, Komunitas',
-      icon: Icons.groups,
-      iconColor: const Color(0xFF6A1B9A),
-      backgroundColor: Colors.purple.shade50,
-      onTap: () {},
-    ),
-    ServiceCategory(
-      title: 'UMKM & Usaha',
-      subtitle: 'NIB, Pasar, Pajak',
-      icon: Icons.storefront,
-      iconColor: const Color(0xFF827717),
-      backgroundColor: Colors.lime.shade50,
-      onTap: () {},
-    ),
-    ServiceCategory(
-      title: 'Pendidikan',
-      subtitle: 'PPDB, Beasiswa',
-      icon: Icons.school,
-      iconColor: const Color(0xFF1565C0),
-      backgroundColor: Colors.blue.shade50,
-      onTap: () {},
-    ),
-    ServiceCategory(
-      title: 'Hunian & PBB',
-      subtitle: 'Tata Ruang, Retribusi',
-      icon: Icons.home,
-      iconColor: const Color(0xFFE65100),
-      backgroundColor: Colors.orange.shade50,
-      onTap: () {},
+      onTap: () {
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            fullscreenDialog: true,
+            builder: (_) => const AllServicesView(),
+          ),
+        );
+      },
     ),
   ];
 
@@ -234,8 +174,6 @@ class _HomeViewState extends State<HomeView> {
                       _buildTopBentoRow(),
                       const SizedBox(height: 20),
                       _buildQuickServicesSection(),
-                      const SizedBox(height: 20),
-                      _buildCategorySection(),
                       const SizedBox(height: 20),
                       _buildNewsSection(),
                       const SizedBox(height: 16),
@@ -336,61 +274,6 @@ class _HomeViewState extends State<HomeView> {
           ),
         ],
       ),
-    );
-  }
-
-  Widget _buildCategorySection() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Row(
-              children: [
-                Container(
-                  width: 6,
-                  height: 16,
-                  decoration: BoxDecoration(
-                    color: AppColors.secondaryContainer,
-                    borderRadius: BorderRadius.circular(999),
-                  ),
-                ),
-                const SizedBox(width: 8),
-                const Text(
-                  'Kategori Layanan Publik',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                    color: AppColors.onSurface,
-                  ),
-                ),
-              ],
-            ),
-            Text(
-              '${_categories.length} Klaster',
-              style: const TextStyle(
-                fontSize: 12,
-                color: AppColors.onSurfaceVariant,
-              ),
-            ),
-          ],
-        ),
-        const SizedBox(height: 12),
-        GridView.builder(
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          itemCount: _categories.length,
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            mainAxisSpacing: 12,
-            crossAxisSpacing: 12,
-            childAspectRatio: 2.6,
-          ),
-          itemBuilder: (context, index) =>
-              ServiceCategoryCard(category: _categories[index]),
-        ),
-      ],
     );
   }
 

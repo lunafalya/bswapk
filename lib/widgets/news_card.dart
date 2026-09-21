@@ -28,7 +28,7 @@ class NewsCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(
-              width: 80,
+              width: 100,
               height: 80,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(12),

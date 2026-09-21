@@ -25,7 +25,7 @@ class DashboardHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.fromLTRB(16, 20, 16, 48),
+      padding: const EdgeInsets.fromLTRB(16, 80, 16, 48),
       decoration: const BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topLeft,
@@ -136,7 +136,7 @@ class DashboardHeader extends StatelessWidget {
                   ),
                 ],
               ),
-              const SizedBox(height: 12),
+              const SizedBox(height: 18),
               _buildSearchBar(),
             ],
           ),

@@ -97,7 +97,7 @@ class _NavItem extends StatelessWidget {
                     width: 56,
                     height: 56,
                     decoration: BoxDecoration(
-                      color: BswBottomNavBar.activeColor,
+                      color: const Color.fromRGBO(30, 68, 123, 1),
                       shape: BoxShape.circle,
                       border: Border.all(color: Colors.white, width: 4),
                       boxShadow: const [

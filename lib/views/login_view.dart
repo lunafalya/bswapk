@@ -134,7 +134,7 @@ class _LoginViewState extends State<LoginView> {
         color: Colors.white.withOpacity(0.8),
         borderRadius: BorderRadius.circular(24),
         border: Border.all(color: AppColors.outlineVariant.withOpacity(0.3)),
-        boxShadow: const [BoxShadow(color: Colors.black12, blurRadius: 6)],
+        boxShadow: const [BoxShadow(color: Colors.black12, blurRadius: 2)],
       ),
       child: Form(
         key: _formKey,
