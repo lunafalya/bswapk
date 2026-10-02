@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+
 import '../theme/app_colors.dart';
 
-/// Placeholder peta sementara untuk halaman WiFi.
-/// TODO: ganti dengan google_maps_flutter / flutter_map + titik hotspot asli.
 class DummyMapCard extends StatelessWidget {
   final String statusLabel;
 
-  const DummyMapCard({super.key, this.statusLabel = 'Finding nearby networks...'});
+  const DummyMapCard({
+    super.key,
+    this.statusLabel = 'Finding nearby networks...',
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -46,17 +48,28 @@ class DummyMapCard extends StatelessWidget {
               decoration: BoxDecoration(
                 color: Colors.white.withOpacity(0.9),
                 borderRadius: BorderRadius.circular(10),
-                border: Border.all(color: AppColors.outlineVariant.withOpacity(0.2)),
-                boxShadow: const [BoxShadow(color: Colors.black12, blurRadius: 4)],
+                border: Border.all(
+                  color: AppColors.outlineVariant.withOpacity(0.2),
+                ),
+                boxShadow: const [
+                  BoxShadow(color: Colors.black12, blurRadius: 4),
+                ],
               ),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const Icon(Icons.my_location, size: 16, color: AppColors.primary),
+                  const Icon(
+                    Icons.my_location,
+                    size: 16,
+                    color: AppColors.primary,
+                  ),
                   const SizedBox(width: 6),
                   Text(
                     statusLabel,
-                    style: const TextStyle(fontSize: 13, color: AppColors.onSurface),
+                    style: const TextStyle(
+                      fontSize: 13,
+                      color: AppColors.onSurface,
+                    ),
                   ),
                 ],
               ),
@@ -95,10 +108,26 @@ class _DummyMapPainter extends CustomPainter {
       ..strokeWidth = 3;
 
     // Garis horizontal & vertikal samar meniru jalan pada peta dummy.
-    canvas.drawLine(Offset(0, size.height * 0.3), Offset(size.width, size.height * 0.35), paint);
-    canvas.drawLine(Offset(0, size.height * 0.7), Offset(size.width, size.height * 0.65), paint);
-    canvas.drawLine(Offset(size.width * 0.25, 0), Offset(size.width * 0.3, size.height), paint);
-    canvas.drawLine(Offset(size.width * 0.7, 0), Offset(size.width * 0.65, size.height), paint);
+    canvas.drawLine(
+      Offset(0, size.height * 0.3),
+      Offset(size.width, size.height * 0.35),
+      paint,
+    );
+    canvas.drawLine(
+      Offset(0, size.height * 0.7),
+      Offset(size.width, size.height * 0.65),
+      paint,
+    );
+    canvas.drawLine(
+      Offset(size.width * 0.25, 0),
+      Offset(size.width * 0.3, size.height),
+      paint,
+    );
+    canvas.drawLine(
+      Offset(size.width * 0.7, 0),
+      Offset(size.width * 0.65, size.height),
+      paint,
+    );
   }
 
   @override

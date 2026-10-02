@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'theme/app_theme.dart';
 import 'theme/language_controller.dart';
-import 'views/login_view.dart';
+import 'views/auth/login_view.dart';
 
 void main() {
   runApp(const BswApp());

@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../views/report_view.dart';
-import '../views/home_view.dart';
-
 class BswBottomNavItemData {
   final String label;
   final IconData icon;

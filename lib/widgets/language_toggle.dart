@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
+
 import '../theme/app_colors.dart';
 
 enum AppLanguage { en, id }
 
-/// Toggle switch "English | EN / ID" yang bisa dipakai di Login, Register,
-/// dan Reset Password. Tap salah satu label EN/ID untuk berpindah bahasa.
 class LanguageToggle extends StatelessWidget {
   final AppLanguage language;
   final ValueChanged<AppLanguage> onChanged;

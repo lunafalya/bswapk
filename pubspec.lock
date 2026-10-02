@@ -129,7 +129,7 @@ packages:
     source: sdk
     version: "0.0.0"
   http:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: http
       sha256: "87721a4a50b19c7f1d49001e51409bddc46303966ce89a65af4f4e6004896412"
@@ -172,10 +172,10 @@ packages:
     dependency: transitive
     description:
       name: image_picker_ios
-      sha256: ee3885b6fcd71958fbc79770dd194c63371439d536d69c47b279171a486482ae
+      sha256: "852a7762962f3bb3ad54ef1d342669e41557f466033a676baa8876b367cf4050"
       url: "https://pub.dev"
     source: hosted
-    version: "0.8.13+7"
+    version: "0.8.13+8"
   image_picker_linux:
     dependency: transitive
     description:
