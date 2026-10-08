@@ -144,7 +144,6 @@ class _TagihanViewState extends State<TagihanView> {
 
                   const SizedBox(height: 24),
 
-                  // Field 2: NOPOL -> hasil PKB
                   TaxCheckField(
                     label: 'Nomor Polisi (Nopol / Plat Nomor)',
                     hint: 'Masukkan NOPOL Anda',
@@ -172,7 +171,10 @@ class _TagihanViewState extends State<TagihanView> {
         children: [
           IconButton(
             onPressed: () => Navigator.of(context).maybePop(),
-            icon: const Icon(Icons.arrow_back, color: AppColors.primary),
+            icon: const Icon(
+              Icons.arrow_back,
+              color: Color.fromARGB(255, 1, 20, 25),
+            ),
           ),
         ],
       ),

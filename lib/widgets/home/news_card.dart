@@ -1,18 +1,22 @@
 import 'package:flutter/material.dart';
 
-import '../../models/dashboard_models.dart';
+import '../../models/news_post.dart';
 import '../../theme/app_colors.dart';
-import '../../assets/images/dummy_asset_image.dart';
 
-/// Kartu berita: thumbnail dummy 80x80, judul, sumber, waktu, kategori.
 class NewsCard extends StatelessWidget {
-  final NewsItem news;
+  final NewsPost news;
   final VoidCallback? onTap;
 
   const NewsCard({super.key, required this.news, this.onTap});
 
+  Widget _placeholder() => Container(
+    color: const Color(0xFFE5E5E5),
+    child: const Icon(Icons.newspaper, color: Colors.grey),
+  );
+
   @override
   Widget build(BuildContext context) {
+    final imageUrl = news.imageUrl;
     return InkWell(
       onTap: onTap,
       borderRadius: BorderRadius.circular(12),
@@ -29,42 +33,25 @@ class NewsCard extends StatelessWidget {
           children: [
             SizedBox(
               width: 100,
-              height: 80,
+              height: 96,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(12),
-                child: Stack(
-                  fit: StackFit.expand,
-                  children: [
-                    DummyAssetImage(
-                      assetPath: news.imageAsset,
-                      placeholderIcon: Icons.newspaper,
-                    ),
-                    Positioned(
-                      left: 4,
-                      bottom: 4,
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 6,
-                          vertical: 2,
-                        ),
-                        decoration: BoxDecoration(
-                          color: Colors.black.withOpacity(0.6),
-                          borderRadius: BorderRadius.circular(4),
-                        ),
+                child: (imageUrl == null || imageUrl.isEmpty)
+                    ? _placeholder()
+                    : Image.network(
+                        imageUrl,
+                        fit: BoxFit.cover,
+                        errorBuilder: (_, __, ___) => _placeholder(),
                       ),
-                    ),
-                  ],
-                ),
               ),
             ),
             const SizedBox(width: 12),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    news.title,
+                    news.judul,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     style: const TextStyle(
@@ -72,6 +59,18 @@ class NewsCard extends StatelessWidget {
                       fontWeight: FontWeight.w600,
                       color: AppColors.onSurface,
                       height: 1.3,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  // Preview of konten
+                  Text(
+                    news.ringkas,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                      fontSize: 12,
+                      height: 1.3,
+                      color: AppColors.onSurfaceVariant,
                     ),
                   ),
                   const SizedBox(height: 6),
@@ -85,22 +84,6 @@ class NewsCard extends StatelessWidget {
                       const SizedBox(width: 4),
                       Text(
                         news.timeAgo,
-                        style: const TextStyle(
-                          fontSize: 11,
-                          color: AppColors.onSurfaceVariant,
-                        ),
-                      ),
-                      const SizedBox(width: 6),
-                      const Text(
-                        '•',
-                        style: TextStyle(
-                          color: AppColors.outlineVariant,
-                          fontSize: 11,
-                        ),
-                      ),
-                      const SizedBox(width: 6),
-                      Text(
-                        news.category,
                         style: const TextStyle(
                           fontSize: 11,
                           color: AppColors.onSurfaceVariant,

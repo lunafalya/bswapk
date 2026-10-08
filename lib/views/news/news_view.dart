@@ -95,7 +95,6 @@ class _NewsViewState extends State<NewsView> {
               onRefresh: _reload,
               child: CustomScrollView(
                 slivers: [
-                  SliverToBoxAdapter(child: _buildBackButton(context)),
                   SliverToBoxAdapter(child: _buildHeader(context)),
                   SliverToBoxAdapter(child: _buildCarousel(carouselPosts)),
                   SliverToBoxAdapter(
@@ -151,16 +150,6 @@ class _NewsViewState extends State<NewsView> {
           SizedBox(height: 12),
           Text('Belum ada berita'),
         ],
-      ),
-    );
-  }
-
-  Widget _buildBackButton(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
-      child: IconButton(
-        onPressed: () => Navigator.of(context).maybePop(),
-        icon: const Icon(Icons.arrow_back, color: _navy, size: 28),
       ),
     );
   }
@@ -251,9 +240,8 @@ class _NewsViewState extends State<NewsView> {
   }
 }
 
-/// Tampilkan gambar berita dengan fallback placeholder kalau `imageUrl`
-/// null atau gagal dimuat — dipakai di carousel & recommendation card.
 Widget _newsImage(String? imageUrl, {required BoxFit fit}) {
+  debugPrint('IMAGE URL: $imageUrl');
   if (imageUrl == null || imageUrl.isEmpty) {
     return Container(
       color: const Color(0xFFE5E5E5),
@@ -267,14 +255,17 @@ Widget _newsImage(String? imageUrl, {required BoxFit fit}) {
   return Image.network(
     imageUrl,
     fit: fit,
-    errorBuilder: (context, error, stackTrace) => Container(
-      color: const Color(0xFFE5E5E5),
-      child: const Icon(
-        Icons.image_not_supported_outlined,
-        size: 40,
-        color: Colors.grey,
-      ),
-    ),
+    errorBuilder: (context, error, stackTrace) {
+      debugPrint('IMAGE ERROR: $error');
+      return Container(
+        color: const Color(0xFFE5E5E5),
+        child: const Icon(
+          Icons.image_not_supported_outlined,
+          size: 40,
+          color: Colors.grey,
+        ),
+      );
+    },
   );
 }
 

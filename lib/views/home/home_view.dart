@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../models/dashboard_models.dart';
+import '../../models/news_post.dart';
+import '../../services/news_service.dart';
+import '../news/news_detail_view.dart';
 import '../../theme/app_colors.dart';
 import '../../widgets/home/city_spotlight_carousel.dart';
 import '../../widgets/home/dashboard_header.dart';
@@ -10,8 +13,18 @@ import '../../widgets/home/quick_service_tile.dart';
 import '../../widgets/home/weather_alert_card.dart';
 import '../facility/cctv_view.dart';
 import '../facility/wifi_view.dart';
-import '../health/bpjs_view.dart';
 import '../service/all_service_view.dart';
+import '../news/news_view.dart';
+
+// Keep WeatherData ONLY from your new backend service
+import '../service/weather_service.dart';
+
+// Hide WeatherData from the old service file
+import 'package:apkbsw/services/bmkg_weather_service.dart' hide WeatherData;
+
+import 'dart:convert';
+
+import 'package:flutter/services.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -22,6 +35,62 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
   int _currentNavIndex = 0;
+  final NewsService _newsService = NewsService();
+  late Future<List<NewsPost>> _newsFuture;
+  late Future<WeatherData> _weatherFuture;
+
+  @override
+  void initState() {
+    super.initState();
+    _newsFuture = _newsService.fetchNews();
+    _weatherFuture = WeatherService.fetchWeather();
+  }
+
+  void dispose() {
+    _newsService.dispose();
+    super.dispose();
+  }
+
+  void _reloadWeather() {
+    setState(() {
+      _weatherFuture = WeatherService.fetchWeather();
+    });
+  }
+
+  IconData _iconFor(String desc) {
+    final d = desc.toLowerCase();
+
+    // Thunderstorm / Petir
+    if (d.contains('petir') || d.contains('thunder') || d.contains('storm')) {
+      return Icons.thunderstorm_rounded;
+    }
+
+    // Rain / Hujan / Drizzle / Showers
+    if (d.contains('hujan') ||
+        d.contains('rain') ||
+        d.contains('drizzle') ||
+        d.contains('shower')) {
+      return Icons.water_drop_rounded;
+    }
+
+    // Cloudy / Berawan / Overcast
+    if (d.contains('berawan') ||
+        d.contains('cloud') ||
+        d.contains('overcast')) {
+      return Icons.cloud_rounded;
+    }
+
+    // Fog / Mist / Haze / Kabut
+    if (d.contains('kabut') ||
+        d.contains('asap') ||
+        d.contains('fog') ||
+        d.contains('mist')) {
+      return Icons.foggy;
+    }
+
+    // Sunny / Clear / Cerah
+    return Icons.wb_sunny_rounded;
+  }
 
   List<CitySpotlight> get _spotlights => const [
     CitySpotlight(
@@ -125,23 +194,6 @@ class _HomeViewState extends State<HomeView> {
     ),
   ];
 
-  List<NewsItem> get _news => const [
-    NewsItem(
-      imageAsset: 'lib/assets/images/pohontumbang.jpeg',
-      // sourceLabel: 'BPBD',
-      title: 'Sejumlah pohon tumbang akibat hujan dan angin lebat Senin',
-      timeAgo: '2 jam lalu',
-      category: 'Bencana',
-    ),
-    NewsItem(
-      imageAsset: 'lib/assets/images/alun.jpg',
-      // sourceLabel: 'Disparbud',
-      title: 'Wisata ikonik Alun-alun kota bogor dekat stasiun bogor & surya kencana',
-      timeAgo: '4 jam lalu',
-      category: 'Wisata',
-    ),
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -181,14 +233,16 @@ class _HomeViewState extends State<HomeView> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          // 2. Tentukan nomor WhatsApp (Gunakan kode negara, misal 62 untuk Indonesia)
-          final Uri whatsappUrl = Uri.parse("https://wa.me/+6281122882233");
-
-          // 3. Periksa apakah tautan bisa dibuka, lalu jalankan
-          if (await canLaunchUrl(whatsappUrl)) {
-            await launchUrl(whatsappUrl, mode: LaunchMode.externalApplication);
-          } else {
-            // Tampilkan pesan error jika WhatsApp tidak terinstal
+          final Uri whatsappUrl = Uri.parse("https://wa.me/6281122882233");
+          try {
+            final launched = await launchUrl(
+              whatsappUrl,
+              mode: LaunchMode.externalApplication,
+            );
+            if (!launched) {
+              throw 'Could not launch $whatsappUrl';
+            }
+          } catch (e) {
             ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(content: Text("Tidak dapat membuka WhatsApp")),
             );
@@ -200,11 +254,50 @@ class _HomeViewState extends State<HomeView> {
     );
   }
 
+  Widget _weatherCard() {
+    return FutureBuilder<WeatherData>(
+      future: _weatherFuture,
+      builder: (context, snap) {
+        if (snap.connectionState == ConnectionState.waiting) {
+          return const SizedBox(
+            height: 160,
+            child: Center(child: CircularProgressIndicator()),
+          );
+        }
+        if (snap.hasError || !snap.hasData) {
+          return WeatherAlertCard(
+            temperature: '--°',
+            weatherLabel: 'Gagal memuat cuaca',
+            highLow: '',
+            aqiValue: '--',
+            humidity: '--',
+            onMapTap: _reloadWeather,
+          );
+        }
+
+        final w = snap.data!;
+        final desc = w.conditionText;
+        final dynamicIcon = _iconFor(desc);
+
+        return WeatherAlertCard(
+          temperature: '${w.currentTemp.round()}°',
+          weatherLabel: desc.isNotEmpty ? desc : 'Cerah Berawan',
+          highLow: 'H: ${w.besokTinggi.round()}° L: ${w.besokRendah.round()}°',
+          aqiLabel: 'Besok',
+          aqiValue: '${w.besokTinggi.round()}° / ${w.besokRendah.round()}°',
+          humidity: '--',
+          icon: dynamicIcon, // Pass the dynamic icon here
+          onMapTap: () {},
+        );
+      },
+    );
+  }
+
   Widget _buildTopBentoRow() {
     return LayoutBuilder(
       builder: (context, constraints) {
         final isWide = constraints.maxWidth >= 700;
-        final weather = WeatherAlertCard(onMapTap: () {});
+        final weather = _weatherCard();
         final spotlight = CitySpotlightCarousel(spotlights: _spotlights);
 
         if (isWide) {
@@ -260,14 +353,6 @@ class _HomeViewState extends State<HomeView> {
                   ),
                 ],
               ),
-              const Text(
-                'Lihat Status Pengajuan',
-                style: TextStyle(
-                  fontSize: 12,
-                  fontWeight: FontWeight.w500,
-                  color: AppColors.primary,
-                ),
-              ),
             ],
           ),
           const SizedBox(height: 12),
@@ -317,21 +402,81 @@ class _HomeViewState extends State<HomeView> {
                 ),
               ],
             ),
-            const Text(
-              'Semua Berita',
-              style: TextStyle(
-                fontSize: 12,
-                fontWeight: FontWeight.w500,
-                color: AppColors.primary,
+            TextButton(
+              onPressed: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (_) => const NewsView()));
+              },
+              style: TextButton.styleFrom(
+                padding: EdgeInsets.zero,
+                minimumSize: const Size(50, 30),
+                tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                alignment: Alignment.centerRight,
+              ),
+              child: const Text(
+                'Semua Berita',
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w600,
+                  color: AppColors.primary,
+                ),
               ),
             ),
           ],
         ),
         const SizedBox(height: 12),
-        for (final item in _news) ...[
-          NewsCard(news: item, onTap: () {}),
-          const SizedBox(height: 12),
-        ],
+        FutureBuilder<List<NewsPost>>(
+          future: _newsFuture,
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Padding(
+                padding: EdgeInsets.symmetric(vertical: 24),
+                child: Center(child: CircularProgressIndicator()),
+              );
+            }
+            if (snapshot.hasError) {
+              return Padding(
+                padding: const EdgeInsets.symmetric(vertical: 16),
+                child: Column(
+                  children: [
+                    const Text('Gagal memuat berita'),
+                    TextButton(
+                      onPressed: () => setState(() {
+                        _newsFuture = _newsService.fetchNews();
+                      }),
+                      child: const Text('Coba Lagi'),
+                    ),
+                  ],
+                ),
+              );
+            }
+            final posts = (snapshot.data ?? const <NewsPost>[])
+                .take(3)
+                .toList();
+            if (posts.isEmpty) {
+              return const Padding(
+                padding: EdgeInsets.symmetric(vertical: 16),
+                child: Center(child: Text('Belum ada berita')),
+              );
+            }
+            return Column(
+              children: [
+                for (final post in posts) ...[
+                  NewsCard(
+                    news: post,
+                    onTap: () => Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (_) =>
+                            NewsDetailView(article: NewsArticle.fromPost(post)),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                ],
+              ],
+            );
+          },
+        ),
       ],
     );
   }

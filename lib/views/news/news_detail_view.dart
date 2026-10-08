@@ -1,7 +1,22 @@
 import 'package:flutter/material.dart';
 
+import '../../models/news_post.dart';
+
 /// Simple data model for a news article shown on [NewsDetailView].
 class NewsArticle {
+  factory NewsArticle.fromPost(NewsPost post) {
+    return NewsArticle(
+      category: 'Berita',
+      categoryColor: const Color(0xFF0B2545),
+      title: post.judul,
+      isTrending: false,
+      timeAgo: post.timeAgo,
+      source: 'Pemerintah Kota Bogor',
+      paragraphs: post.paragraphs,
+      imageUrl: post.imageUrl ?? '',
+    );
+  }
+
   const NewsArticle({
     required this.category,
     required this.categoryColor,

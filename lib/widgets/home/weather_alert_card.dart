@@ -7,7 +7,8 @@ class WeatherAlertCard extends StatelessWidget {
   final String aqiValue;
   final String aqiLabel;
   final String humidity;
-  final String warningText;
+  final IconData icon;
+  final String? warningText;
   final VoidCallback? onMapTap;
 
   const WeatherAlertCard({
@@ -18,7 +19,8 @@ class WeatherAlertCard extends StatelessWidget {
     this.aqiValue = '26°',
     this.aqiLabel = 'Besok',
     this.humidity = '86%',
-    this.warningText = 'Potensi angin & petir',
+    this.icon = Icons.thunderstorm_rounded,
+    this.warningText,
     this.onMapTap,
   });
 
@@ -27,15 +29,7 @@ class WeatherAlertCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        gradient: const LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [
-            Color.fromARGB(255, 255, 255, 255),
-            Color.fromARGB(255, 255, 255, 255),
-            Color.fromARGB(255, 255, 255, 255),
-          ],
-        ),
+        color: Colors.white,
         borderRadius: BorderRadius.circular(20),
         border: Border.all(color: Colors.white.withOpacity(0.15)),
         boxShadow: const [BoxShadow(color: Colors.black26, blurRadius: 6)],
@@ -43,44 +37,31 @@ class WeatherAlertCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
+          // Header
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Row(
-                children: [
-                  _PulsingDot(),
-                  const SizedBox(width: 6),
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.thunderstorm,
-                        size: 14,
-                        color: const Color.fromARGB(255, 7, 95, 107),
-                      ),
-                      const SizedBox(width: 4),
-                      Text(
-                        'CUACA',
-                        style: TextStyle(
-                          fontSize: 11,
-                          fontWeight: FontWeight.w600,
-                          letterSpacing: 0.5,
-                          color: const Color.fromARGB(255, 2, 15, 74),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
+              _PulsingDot(),
+              const SizedBox(width: 6),
+              Icon(
+                icon,
+                size: 14,
+                color: const Color.fromARGB(255, 7, 95, 107),
               ),
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-                decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.1),
-                  borderRadius: BorderRadius.circular(999),
+              const SizedBox(width: 4),
+              const Text(
+                'CUACA',
+                style: TextStyle(
+                  fontSize: 11,
+                  fontWeight: FontWeight.w600,
+                  letterSpacing: 0.5,
+                  color: Color.fromARGB(255, 2, 15, 74),
                 ),
               ),
             ],
           ),
           const SizedBox(height: 12),
+
+          // Main row
           Row(
             children: [
               Container(
@@ -92,7 +73,7 @@ class WeatherAlertCard extends StatelessWidget {
                   border: Border.all(color: Colors.white.withOpacity(0.2)),
                 ),
                 child: Icon(
-                  Icons.thunderstorm_rounded,
+                  icon,
                   color: const Color.fromARGB(255, 10, 4, 70),
                   size: 28,
                 ),
@@ -115,16 +96,30 @@ class WeatherAlertCard extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(width: 6),
-                        Text(
-                          weatherLabel,
-                          style: TextStyle(
-                            fontSize: 13,
-                            fontWeight: FontWeight.w600,
-                            color: const Color.fromARGB(255, 0, 43, 48),
+                        Flexible(
+                          child: Text(
+                            weatherLabel,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: const TextStyle(
+                              fontSize: 13,
+                              fontWeight: FontWeight.w600,
+                              color: Color.fromARGB(255, 0, 43, 48),
+                            ),
                           ),
                         ),
                       ],
                     ),
+                    if (highLow.isNotEmpty) ...[
+                      const SizedBox(height: 2),
+                      Text(
+                        highLow,
+                        style: const TextStyle(
+                          fontSize: 11,
+                          color: Color.fromARGB(179, 9, 0, 50),
+                        ),
+                      ),
+                    ],
                   ],
                 ),
               ),
@@ -132,74 +127,77 @@ class WeatherAlertCard extends StatelessWidget {
           ),
           const SizedBox(height: 12),
           _buildMetrics(),
-          const SizedBox(height: 12),
-          Container(
-            padding: const EdgeInsets.all(10),
-            decoration: BoxDecoration(
-              color: Colors.amber.withOpacity(0.2),
-              borderRadius: BorderRadius.circular(12),
-              border: Border.all(color: Colors.amber.withOpacity(0.4)),
-            ),
-            child: Row(
-              children: [
-                const Icon(
-                  Icons.warning_amber_rounded,
-                  color: Colors.amber,
-                  size: 18,
-                ),
-                const SizedBox(width: 8),
-                Expanded(
-                  child: RichText(
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    text: TextSpan(
-                      style: const TextStyle(
-                        fontSize: 11,
-                        color: Color.fromARGB(255, 255, 187, 70),
-                      ),
-                      children: [
-                        const TextSpan(
-                          text: 'Waspada Cuaca Ekstrem: ',
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        TextSpan(text: warningText),
-                      ],
-                    ),
+
+          if (warningText != null) ...[
+            const SizedBox(height: 12),
+            Container(
+              padding: const EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                color: Colors.amber.withOpacity(0.2),
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(color: Colors.amber.withOpacity(0.4)),
+              ),
+              child: Row(
+                children: [
+                  const Icon(
+                    Icons.warning_amber_rounded,
+                    color: Colors.amber,
+                    size: 18,
                   ),
-                ),
-                const SizedBox(width: 8),
-                InkWell(
-                  onTap: onMapTap,
-                  borderRadius: BorderRadius.circular(999),
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 10,
-                      vertical: 6,
-                    ),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(999),
-                    ),
-                    child: const Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Icon(Icons.radar, size: 13, color: Color(0xFF0F355C)),
-                        SizedBox(width: 4),
-                        Text(
-                          'Peta',
-                          style: TextStyle(
-                            fontSize: 11,
-                            fontWeight: FontWeight.w600,
-                            color: Color(0xFF0F355C),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: RichText(
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      text: TextSpan(
+                        style: const TextStyle(
+                          fontSize: 11,
+                          color: Color.fromARGB(255, 255, 187, 70),
+                        ),
+                        children: [
+                          const TextSpan(
+                            text: 'Waspada Cuaca Ekstrem: ',
+                            style: TextStyle(fontWeight: FontWeight.bold),
                           ),
-                        ),
-                      ],
+                          TextSpan(text: warningText),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-              ],
+                  const SizedBox(width: 8),
+                  InkWell(
+                    onTap: onMapTap,
+                    borderRadius: BorderRadius.circular(999),
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 10,
+                        vertical: 6,
+                      ),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(999),
+                      ),
+                      child: const Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(Icons.radar, size: 13, color: Color(0xFF0F355C)),
+                          SizedBox(width: 4),
+                          Text(
+                            'Peta',
+                            style: TextStyle(
+                              fontSize: 11,
+                              fontWeight: FontWeight.w600,
+                              color: Color(0xFF0F355C),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
+          ],
         ],
       ),
     );
@@ -228,7 +226,7 @@ class WeatherAlertCard extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
         decoration: BoxDecoration(
-          color: const Color.fromARGB(255, 255, 255, 255),
+          color: Colors.white,
           borderRadius: BorderRadius.circular(10),
           boxShadow: const [
             BoxShadow(
@@ -237,9 +235,7 @@ class WeatherAlertCard extends StatelessWidget {
               offset: Offset(0, 1),
             ),
           ],
-          border: Border.all(
-            color: const Color.fromARGB(255, 0, 0, 0).withOpacity(0.1),
-          ),
+          border: Border.all(color: Colors.black.withOpacity(0.1)),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -300,29 +296,29 @@ class _PulsingDotState extends State<_PulsingDot>
               final opacity = (1 - _controller.value).clamp(0.0, 1.0);
               return Opacity(
                 opacity: opacity,
-                child: Transform.scale(
-                  scale: scale,
-                  child: Container(
-                    width: 8,
-                    height: 8,
-                    decoration: const BoxDecoration(
-                      color: Colors.amber,
-                      shape: BoxShape.circle,
-                    ),
-                  ),
-                ),
+                child: Transform.scale(scale: scale, child: child),
               );
             },
+            child: const _Dot(),
           ),
-          Container(
-            width: 8,
-            height: 8,
-            decoration: const BoxDecoration(
-              color: Colors.amber,
-              shape: BoxShape.circle,
-            ),
-          ),
+          const _Dot(),
         ],
+      ),
+    );
+  }
+}
+
+class _Dot extends StatelessWidget {
+  const _Dot();
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 8,
+      height: 8,
+      decoration: const BoxDecoration(
+        color: Colors.amber,
+        shape: BoxShape.circle,
       ),
     );
   }

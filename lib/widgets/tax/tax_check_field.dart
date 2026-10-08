@@ -22,4 +22,10 @@ class TaxBillResult {
     required this.payButtonLabel,
     this.avatarAsset,
   });
+
+
+
 }
+
+
+

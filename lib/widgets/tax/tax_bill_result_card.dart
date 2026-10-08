@@ -16,9 +16,15 @@ class TaxBillResultCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: Colors.black.withOpacity(0.1)),
+        border: Border.all(
+          color: const Color.fromARGB(255, 230, 225, 225).withOpacity(0.1),
+        ),
         boxShadow: const [
-          BoxShadow(color: Colors.black26, blurRadius: 4, offset: Offset(0, 4)),
+          BoxShadow(
+            color: Color.fromARGB(66, 250, 250, 250),
+            blurRadius: 4,
+            offset: Offset(0, 4),
+          ),
         ],
       ),
       padding: const EdgeInsets.all(19),
@@ -123,9 +129,15 @@ class TaxBillResultCard extends StatelessWidget {
       padding: const EdgeInsets.all(11),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        border: Border.all(color: Colors.black.withOpacity(0.05)),
+        border: Border.all(
+          color: const Color.fromARGB(255, 232, 226, 226).withOpacity(0.05),
+        ),
         boxShadow: const [
-          BoxShadow(color: Colors.black26, blurRadius: 4, offset: Offset(0, 4)),
+          BoxShadow(
+            color: Color.fromARGB(66, 248, 243, 243),
+            blurRadius: 4,
+            offset: Offset(0, 4),
+          ),
         ],
       ),
       child: Column(
