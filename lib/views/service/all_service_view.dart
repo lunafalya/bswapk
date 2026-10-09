@@ -231,10 +231,6 @@ class _ServiceTile extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        // Material+InkWell dibungkus persis seukuran box (48x48) dan
-        // di-clip, jadi efek ripple saat ditekan tidak melebar ke luar
-        // box ikon — beda dari InkWell di seluruh tile yang bikin
-        // ripple-nya kebesaran sampai ke label teks.
         Material(
           color: color.withOpacity(0.1),
           borderRadius: BorderRadius.circular(16),

@@ -46,6 +46,46 @@ class PerangkatDaerahView extends StatelessWidget {
 
   static const _agencies = [
     _AgencyContact(
+      name: 'Sekretariat Daerah',
+      email: 'setda@kotabogor.go.id',
+      phone: '(0251) 8324021',
+      address: 'Jl. Ir. H. Juanda No.10, RT.01/RW.01, Pabaton',
+      websiteUrl: 'https://setda.kotabogor.go.id',
+      imagePath: 'lib/assets/images/setda.jpg',
+    ),
+    _AgencyContact(
+      name: 'Sekretariat DPRD',
+      email: 'setwan@kotabogor.go.id',
+      phone: '(0251) 8324021',
+      address: 'Jl. Pemuda No.25, RT.01/RW.06, Tanah Sareal',
+      websiteUrl: 'https://setwan.kotabogor.go.id',
+      imagePath: 'lib/assets/images/setwan.jpg',
+    ),
+    _AgencyContact(
+      name: 'Inspektorat Daerah',
+      email: 'inspektorat@kotabogor.go.id',
+      phone: '(0251) 8324021',
+      address: 'Jl. Raya Pajajaran No.5, RT.02/RW.04, Baranangsiang',
+      websiteUrl: 'https://inspektorat.kotabogor.go.id',
+      imagePath: 'lib/assets/images/inspektorat.jpg',
+    ),
+    _AgencyContact(
+      name: 'Dinas Sosial',
+      email: 'dinsos@kotabogor.go.id',
+      phone: '(0251) 8324021',
+      address: 'Jl. Merdeka No.142, RT.03/RW.05, Ciwaringin',
+      websiteUrl: 'https://dinsos.kotabogor.go.id',
+      imagePath: 'lib/assets/images/dinsos.jpg',
+    ),
+    _AgencyContact(
+      name: 'Dinas Pemberdayaan Perempuan dan Perlindungan Anak',
+      email: 'dppa@kotabogor.go.id',
+      phone: '(0251) 8324021',
+      address: 'Jl. Ciwaringin No.99, RT.01/RW.09, Ciwaringin,',
+      websiteUrl: 'https://dppa.kotabogor.go.id',
+      imagePath: 'lib/assets/images/dppa.jpg',
+    ),
+    _AgencyContact(
       name: 'Dinas Kesehatan',
       email: 'dinkes@kotabogor.go.id',
       phone: '(0251) 8331753',
@@ -74,6 +114,26 @@ class PerangkatDaerahView extends StatelessWidget {
           'Jawa Barat 16144',
       websiteUrl: 'https://dishub.kotabogor.go.id',
       imagePath: 'lib/assets/images/dishub.jpg',
+    ),
+    _AgencyContact(
+      name: 'Dinas Lingkungan Hidup',
+      email: 'dlh@kotabogor.go.id',
+      phone: '(0251) 8324021',
+      address:
+          'Jalan Raya Tajur No.5, Bogor Timur, Kota Bogor, '
+          'Jawa Barat 16144',
+      websiteUrl: 'https://dlh.kotabogor.go.id',
+      imagePath: 'lib/assets/images/dlh.jpg',
+    ),
+    _AgencyContact(
+      name: 'Dinas Lingkungan Hidup',
+      email: 'dlh@kotabogor.go.id',
+      phone: '(0251) 8324021',
+      address:
+          'Jalan Raya Tajur No.5, Bogor Timur, Kota Bogor, '
+          'Jawa Barat 16144',
+      websiteUrl: 'https://dlh.kotabogor.go.id',
+      imagePath: 'lib/assets/images/dlh.jpg',
     ),
   ];
 

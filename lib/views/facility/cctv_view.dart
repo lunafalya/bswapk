@@ -20,7 +20,6 @@ class _CctvViewState extends State<CctvView> {
     super.dispose();
   }
 
-  // TODO: ganti dengan data dari API/backend.
   List<CctvDistrict> get _districts => [
     CctvDistrict(
       name: 'Kecamatan Bogor Tengah',

@@ -77,7 +77,6 @@ class _TagihanViewState extends State<TagihanView> {
       _pkbResult = null;
     });
 
-    // TODO: ganti dengan pemanggilan API pengecekan PKB berdasarkan NOPOL.
     await Future.delayed(const Duration(milliseconds: 600));
 
     if (!mounted) return;
@@ -128,8 +127,6 @@ class _TagihanViewState extends State<TagihanView> {
                     ),
                   ),
                   const SizedBox(height: 16),
-
-                  // Field 1: NOP -> hasil PBB
                   TaxCheckField(
                     label: 'Nomor Objek Pajak (NOP)',
                     hint: 'Masukkan NOP Anda',
