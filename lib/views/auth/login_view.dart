@@ -110,11 +110,6 @@ class _LoginViewState extends State<LoginView> {
           height: 48,
           width: 48,
           padding: const EdgeInsets.all(4),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(12),
-            boxShadow: const [BoxShadow(color: Colors.black12, blurRadius: 4)],
-          ),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(8),
             child: Image.asset(
@@ -133,7 +128,9 @@ class _LoginViewState extends State<LoginView> {
       decoration: BoxDecoration(
         color: Colors.white.withOpacity(0.8),
         borderRadius: BorderRadius.circular(24),
-        border: Border.all(color: AppColors.outlineVariant.withOpacity(0.3)),
+        border: Border.all(
+          color: const Color.fromARGB(255, 208, 213, 216).withOpacity(0.3),
+        ),
         boxShadow: const [BoxShadow(color: Colors.black12, blurRadius: 2)],
       ),
       child: Form(

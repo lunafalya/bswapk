@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../models/news_post.dart';
 import '../../services/news_service.dart';
 import 'news_detail_view.dart';
+import '../home/main_shell.dart';
 
 class NewsView extends StatefulWidget {
   const NewsView({super.key});

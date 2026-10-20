@@ -61,6 +61,7 @@ flutter:
 
   assets:
     - lib/assets/images/
+    - lib/assets/images/pd/
     - lib/assets/bogor_kelurahan.json
 
   # The following line ensures that the Material Icons font is

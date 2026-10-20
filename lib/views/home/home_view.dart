@@ -17,7 +17,6 @@ import '../facility/cctv_view.dart';
 import '../facility/wifi_view.dart';
 import '../service/all_service_view.dart';
 import '../news/news_view.dart';
-// Keep WeatherData ONLY from your new backend service
 import '../service/weather_service.dart';
 
 import 'package:flutter/services.dart';

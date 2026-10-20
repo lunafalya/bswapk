@@ -10,12 +10,8 @@ class EditProfileView extends StatefulWidget {
 }
 
 class _EditProfileViewState extends State<EditProfileView> {
-  final TextEditingController _nameController = TextEditingController(
-    text: 'Nama Pengguna',
-  );
-  final TextEditingController _emailController = TextEditingController(
-    text: 'namapengguna@gmail.com',
-  );
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
 
   String? _selectedGender;
@@ -85,7 +81,6 @@ class _EditProfileViewState extends State<EditProfileView> {
       body: SingleChildScrollView(
         child: Stack(
           children: [
-            // 1. HEADER DENGAN TENTANG/BACKGROUND & TOMBOL BACK
             SizedBox(
               height: _headerHeight,
               width: double.infinity,

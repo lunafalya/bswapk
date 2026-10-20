@@ -51,7 +51,7 @@ class PerangkatDaerahView extends StatelessWidget {
       phone: '(0251) 8324021',
       address: 'Jl. Ir. H. Juanda No.10, RT.01/RW.01, Pabaton',
       websiteUrl: 'https://setda.kotabogor.go.id',
-      imagePath: 'lib/assets/images/setda.jpg',
+      imagePath: 'lib/assets/images/pd/setda.jpg',
     ),
     _AgencyContact(
       name: 'Sekretariat DPRD',
@@ -59,7 +59,7 @@ class PerangkatDaerahView extends StatelessWidget {
       phone: '(0251) 8324021',
       address: 'Jl. Pemuda No.25, RT.01/RW.06, Tanah Sareal',
       websiteUrl: 'https://setwan.kotabogor.go.id',
-      imagePath: 'lib/assets/images/setwan.jpg',
+      imagePath: 'lib/assets/images/pd/bogor.png',
     ),
     _AgencyContact(
       name: 'Inspektorat Daerah',
@@ -67,7 +67,7 @@ class PerangkatDaerahView extends StatelessWidget {
       phone: '(0251) 8324021',
       address: 'Jl. Raya Pajajaran No.5, RT.02/RW.04, Baranangsiang',
       websiteUrl: 'https://inspektorat.kotabogor.go.id',
-      imagePath: 'lib/assets/images/inspektorat.jpg',
+      imagePath: 'lib/assets/images/pd/inspektorat.jpg',
     ),
     _AgencyContact(
       name: 'Dinas Sosial',
@@ -75,7 +75,7 @@ class PerangkatDaerahView extends StatelessWidget {
       phone: '(0251) 8324021',
       address: 'Jl. Merdeka No.142, RT.03/RW.05, Ciwaringin',
       websiteUrl: 'https://dinsos.kotabogor.go.id',
-      imagePath: 'lib/assets/images/dinsos.jpg',
+      imagePath: 'lib/assets/images/pd/dinsos.png',
     ),
     _AgencyContact(
       name: 'Dinas Pemberdayaan Perempuan dan Perlindungan Anak',
@@ -83,7 +83,7 @@ class PerangkatDaerahView extends StatelessWidget {
       phone: '(0251) 8324021',
       address: 'Jl. Ciwaringin No.99, RT.01/RW.09, Ciwaringin,',
       websiteUrl: 'https://dppa.kotabogor.go.id',
-      imagePath: 'lib/assets/images/dppa.jpg',
+      imagePath: 'lib/assets/images/pd/dppa.jpg',
     ),
     _AgencyContact(
       name: 'Dinas Kesehatan',
@@ -93,7 +93,7 @@ class PerangkatDaerahView extends StatelessWidget {
           'Jalan R.M. Tirto Adhi Soerjo No.3, RT.02/RW.02, '
           'Tanah Sareal, Kota Bogor, Jawa Barat 16161',
       websiteUrl: 'https://dinkes.kotabogor.go.id',
-      imagePath: 'lib/assets/images/dinkes.jpg',
+      imagePath: 'lib/assets/images/pd/dinkes.jpg',
     ),
     _AgencyContact(
       name: 'Dinas Pendidikan',
@@ -103,7 +103,7 @@ class PerangkatDaerahView extends StatelessWidget {
           'Jalan Pangeran Sogiri No.7, Tanah Baru, Bogor Utara, '
           'Kota Bogor, Jawa Barat 16154',
       websiteUrl: 'https://disdik.kotabogor.go.id',
-      imagePath: 'lib/assets/images/disdik.jpg',
+      imagePath: 'lib/assets/images/pd/disdik.jpg',
     ),
     _AgencyContact(
       name: 'Dinas Perhubungan',
@@ -113,7 +113,7 @@ class PerangkatDaerahView extends StatelessWidget {
           'Jalan Raya Tajur No.5, Bogor Timur, Kota Bogor, '
           'Jawa Barat 16144',
       websiteUrl: 'https://dishub.kotabogor.go.id',
-      imagePath: 'lib/assets/images/dishub.jpg',
+      imagePath: 'lib/assets/images/pd/dishub.png',
     ),
     _AgencyContact(
       name: 'Dinas Lingkungan Hidup',
@@ -123,17 +123,287 @@ class PerangkatDaerahView extends StatelessWidget {
           'Jalan Raya Tajur No.5, Bogor Timur, Kota Bogor, '
           'Jawa Barat 16144',
       websiteUrl: 'https://dlh.kotabogor.go.id',
-      imagePath: 'lib/assets/images/dlh.jpg',
+      imagePath: 'lib/assets/images/pd/dlh.png',
     ),
     _AgencyContact(
-      name: 'Dinas Lingkungan Hidup',
-      email: 'dlh@kotabogor.go.id',
+      name: 'Dinas Komunikasi dan Informatika',
+      email: 'kominfo@kotabogor.go.id',
       phone: '(0251) 8324021',
-      address:
-          'Jalan Raya Tajur No.5, Bogor Timur, Kota Bogor, '
-          'Jawa Barat 16144',
-      websiteUrl: 'https://dlh.kotabogor.go.id',
-      imagePath: 'lib/assets/images/dlh.jpg',
+      address: 'Jl. Ir. H. Juanda No.10, RT.01/RW.01, Pabaton',
+      websiteUrl: 'https://kominfo.kotabogor.go.id',
+      imagePath: 'lib/assets/images/pd/kominfo.webp',
+    ),
+    _AgencyContact(
+      name: 'Dinas Penanaman Modal dan Pelayanan Terpadu Satu Pintu',
+      email: 'dpmptsp@kotabogor.go.id',
+      phone: '(0251) 8324021',
+      address: 'Jl. Kapten Muslihat No.21, RT.01/RW.01, Pabaton',
+      websiteUrl: 'https://perizinan.kotabogor.go.id',
+      imagePath: 'lib/assets/images/pd/dpmptsp.png',
+    ),
+    _AgencyContact(
+      name: 'Dinas Pemuda Dan Olahraga ',
+      email: 'dispora@kotabogor.go.id',
+      phone: '(0251) 8324021',
+      address: '	Jl. Pemuda No.4, RT.04/RW.01, Tanah Sareal',
+      websiteUrl: 'https://perizinan.kotabogor.go.id',
+      imagePath: 'lib/assets/images/pd/dispora.jpg',
+    ),
+    _AgencyContact(
+      name: 'Dinas Pariwisata dan Kebudayaan Kota Bogor',
+      email: 'disbudpar@kotabogor.go.id',
+      phone: '(0251) 8324021',
+      address: 'Jalan Pandu Raya No. 45, Tegal Gundil',
+      websiteUrl: 'https://disparbud.kotabogor.go.id/',
+      imagePath: 'lib/assets/images/pd/dispudbar.jpg',
+    ),
+    _AgencyContact(
+      name: 'Dinas Pemadam Kebakaran dan Penyelamatan',
+      email: 'dpkp@kotabogor.go.id',
+      phone: '(0251) 8324021',
+      address: 'Jl. Raya Pajajaran No.01 raya, RT.07/RW.02, Sukasari',
+      websiteUrl: 'https://damkar.kotabogor.go.id/',
+      imagePath: 'lib/assets/images/pd/dpkp.jpg',
+    ),
+    _AgencyContact(
+      name: 'Satuan Polisi Pamong Praja Kota Bogor',
+      email: 'satpolpp@kotabogor.go.id',
+      phone: '(0251) 8324021',
+      address: 'Jl. Raya Pajajaran No.121, RT.04/RW.03, Bantarjati',
+      websiteUrl: 'https://satpolpp.kotabogor.go.id/',
+      imagePath: 'lib/assets/images/pd/satpolpp.jpeg',
+    ),
+    _AgencyContact(
+      name: 'Dinas Pekerjaan Umum dan Penataan Ruang Kota Bogor',
+      email: 'dpupr@kotabogor.go.id',
+      phone: '(0251) 8324021',
+      address: 'Jalan Pool Bina Marga No.2, Tanah Sereal, RT.02/RW.01',
+      websiteUrl: 'https://dpupr.kotabogor.go.id/',
+      imagePath: 'lib/assets/images/pd/bogor.png',
+    ),
+    _AgencyContact(
+      name: 'Dinas Arsip dan Perpustakaan Kota Bogor',
+      email: 'diskarpus@kotabogor.go.id',
+      phone: '(0251) 8324021',
+      address: 'JL Medika 1A, No. 2, Perum Menteng Asri, RT.02/RW.20',
+      websiteUrl: 'https://diarpus.kotabogor.go.id/',
+      imagePath: 'lib/assets/images/pd/diskarpus.jpg',
+    ),
+    _AgencyContact(
+      name: 'Dinas Tenaga Kerja Kota Bogor',
+      email: 'disnakertrans@kotabogor.go.id, disnakersostrans@kotabogor.go.id',
+      phone: '(0251) 8324021',
+      address: 'Jl. DR. Sumeru No.33, RT.01/RW.02, Menteng',
+      websiteUrl: 'https://disnaker.kotabogor.go.id/',
+      imagePath: 'lib/assets/images/pd/disnaker.jpg',
+    ),
+    _AgencyContact(
+      name: 'Dinas Kependudukan dan Pencatatan Sipil Kota Bogor',
+      email: 'disdukcapil@kotabogor.go.id',
+      phone: '(0251) 8324021',
+      address: 'Jl. Achmad Adnawijaya No.45A, RT.01/RW.16, Tegal Gundil',
+      websiteUrl: 'https://disdukcapil.kotabogor.go.id/',
+      imagePath: 'lib/assets/images/pd/dukcapil.png',
+    ),
+    _AgencyContact(
+      name: 'Dinas Pengendalian Penduduk dan Keluarga Berencana Kota Bogor',
+      email: 'dppkb@kotabogor.go.id',
+      phone: '(0251) 8324021',
+      address: 'Jl. Senam No.1, RT.04/RW.02, Tanah Sareal',
+      websiteUrl: 'https://dppkb.kotabogor.go.id/',
+      imagePath: 'lib/assets/images/pd/dppkb.jpg',
+    ),
+    _AgencyContact(
+      name: 'Dinas Koperasi, Usaha Kecil,dan Menengah, Perdagangan dan Perindustrian Kota Bogor',
+      email: 'dinkumkmdagin@kotabogor.go.id',
+      phone: '(0251) 8324021',
+      address: 'Jl. Dadali No.4, RT.03/RW.06, Tanah Sareal',
+      websiteUrl: 'https://dinkumkmdagin.kotabogor.go.id/',
+      imagePath: 'lib/assets/images/pd/dinkukmdagin.jpg',
+    ),
+    _AgencyContact(
+      name: 'Dinas Perumahan dan Pemukiman Kota Bogor',
+      email: 'disperumkim@kotabogor.go.id',
+      phone: '(0251) 8324021',
+      address: 'Jl. Pengadilan No.8a, RT.03/RW.01, Pabaton',
+      websiteUrl: 'https://disperumkim.kotabogor.go.id/',
+      imagePath: 'lib/assets/images/pd/disperumkim.jpg',
+    ),
+    _AgencyContact(
+      name: 'Badan Perencanaan Pembangunan Daerah Kota Bogor',
+      email: 'bapperida@kotabogor.go.id',
+      phone: '(0251) 8324021',
+      address: 'Jl. Kapten Muslihat No.21, RT.01/RW.01, Pabaton',
+      websiteUrl: 'https://bapperida.kotabogor.go.id/',
+      imagePath: 'lib/assets/images/pd/bapperida.jpg',
+    ),
+    _AgencyContact(
+      name: 'Badan Kepegawaian dan Pengembangan Sumber Daya Manusia Kota Bogor',
+      email: 'bkpsdm@kotabogor.go.id, bkpsda@kotabogor.go.id',
+      phone: '(0251) 8324021',
+      address: 'Jl. Julang 1 No.7A, RT.02/RW.4, Tanah Sareal',
+      websiteUrl: 'https://bkpsdm.kotabogor.go.id/',
+      imagePath: 'lib/assets/images/pd/bkpsdm.jpg',
+    ),
+    _AgencyContact(
+      name: 'Badan Keuangan dan Aset Daerah Kota Bogor',
+      email: 'bkad@kotabogor.go.id',
+      phone: '(0251) 8324021',
+      address: 'Jl. Pemuda No.31, RT.01/RW.06, Tanah Sareal',
+      websiteUrl: 'https://bkad.kotabogor.go.id/',
+      imagePath: 'lib/assets/images/pd/bkad.jpg',
+    ),
+    _AgencyContact(
+      name: 'Badan Pendapatan Daerah Kota Bogor',
+      email: 'bapenda@kotabogor.go.id',
+      phone: '(0251) 8324021',
+      address: 'Jl. Pemuda No.31, RT.01/RW.06, Tanah Sareal',
+      websiteUrl: 'https://bapenda.kotabogor.go.id/',
+      imagePath: 'lib/assets/images/pd/bapenda.jpg',
+    ),
+    _AgencyContact(
+      name: 'Badan Kesatuan Bangsa dan Politik Kota Bogor',
+      email: 'kesbangpol@kotabogor.go.id',
+      phone: '(0251) 8324021',
+      address: 'Jl. Kesehatan No.2, RT.02/RW.02, Tanah Sareal',
+      websiteUrl: 'https://kesbangpol.kotabogor.go.id/',
+      imagePath: 'lib/assets/images/pd/kesbangpol.jpg',
+    ),
+    _AgencyContact(
+      name: 'Badan Penanggulangan Bencana Daerah Kota Bogor',
+      email: 'bpbd@kotabogor.go.id',
+      phone: '(0251) 8324021',
+      address: 'Jl. Pool Bina Marga No.2, RT.02/RW.01, Kayu Manis',
+      websiteUrl: 'https://bpbd.kotabogor.go.id/',
+      imagePath: 'lib/assets/images/pd/bpbd.jpg',
+    ),
+    _AgencyContact(
+      name: 'RSUD Kota Bogor',
+      email: 'rsud@kotabogor.go.id',
+      phone: '(0251) 8324021',
+      address: 'Jl. DR. Sumeru No.120, RT.03/RW.20, Menteng',
+      websiteUrl: 'https://rsud.kotabogor.go.id/',
+      imagePath: 'lib/assets/images/pd/rsud.jpg',
+    ),
+    _AgencyContact(
+      name: 'Kecamatan Bogor Utara Kota Bogor',
+      email: 'kec.bout@kotabogor.go.id',
+      phone: '(0251) 8324021',
+      address: 'Jl. Gagalur II No. 2',
+      websiteUrl: 'https://kecbogorutara.kotabogor.go.id/',
+      imagePath: 'lib/assets/images/pd/kecbogorutara.jpg',
+    ),
+    _AgencyContact(
+      name: 'Kecamatan Bogor Selatan Kota Bogor',
+      email: 'kec.bosel@kotabogor.go.id',
+      phone: '(0251) 8324021',
+      address: 'Jl. Layungsari III No.41',
+      websiteUrl: 'https://kecbogorselatan.kotabogor.go.id/',
+      imagePath: 'lib/assets/images/pd/kecbogorselatan.jpg',
+    ),
+    _AgencyContact(
+      name: 'Kecamatan Bogor Timur Kota Bogor',
+      email: 'kec.botim@kotabogor.go.id',
+      phone: '(0251) 8324021',
+      address: 'Jl. Raya Pajajaran No.16, Baranangsiang',
+      websiteUrl: 'https://kecbogortimur.kotabogor.go.id/',
+      imagePath: 'lib/assets/images/pd/kecbogortimur.jpg',
+    ),
+    _AgencyContact(
+      name: 'Kecamatan Bogor Barat Kota Bogor',
+      email: 'kec.bobar@kotabogor.go.id',
+      phone: '(0251) 8324021',
+      address: 'Jl. KH. TB. M. FALAK No.319, Loji',
+      websiteUrl: 'https://kecbogorbarat.kotabogor.go.id/',
+      imagePath: 'lib/assets/images/pd/kecbogorbarat.jpg',
+    ),
+    _AgencyContact(
+      name: 'Kecamatan Bogor Tengah Kota Bogor',
+      email: 'kec.boteng@kotabogor.go.id',
+      phone: '(0251) 8324021',
+      address: 'Jl. Kantin No. 02',
+      websiteUrl: 'https://kecbogortengah.kotabogor.go.id/',
+      imagePath: 'lib/assets/images/pd/kecbogortengah.jpg',
+    ),
+    _AgencyContact(
+      name: 'Kecamatan Tanah Sareal Kota Bogor',
+      email: 'kec.tansar@kotabogor.go.id',
+      phone: '(0251) 8324021',
+      address: 'Jalan Kebon Pedes No. 20',
+      websiteUrl: 'https://kectanahsareal.kotabogor.go.id/',
+      imagePath: 'lib/assets/images/pd/kectanahsareal.jpg',
+    ),
+    _AgencyContact(
+      name: 'Bagian Administrasi Pembagunan',
+      email: 'bag.adalbang@kotabogor.go.id, bag.adbang@kotabogor.go.id, bag.dalprog@kotabogor.go.id',
+      phone: '(0251) 8324021',
+      address: 'Jl. Ir. H. Juanda No.10, RT.01/RW.01, Pabaton',
+      websiteUrl: '',
+      imagePath: 'lib/assets/images/pd/bag_adalbang.jpg',
+    ),
+    _AgencyContact(
+      name: 'Bagian Kesejahteraan Masyarakat',
+      email: 'bag.kesra@kotabogor.go.id, bag.adkesra@kotabogor.go.id',
+      phone: '(0251) 8324021',
+      address: 'Jl. Ir. H. Juanda No.10, RT.01/RW.01, Pabaton',
+      websiteUrl: '',
+      imagePath: 'lib/assets/images/pd/bag_kesra.jpg',
+    ),
+    _AgencyContact(
+      name: 'Bagian Perekonomian',
+      email: 'bag.ekon@kotabogor.go.id, bag.ekonomi@kotabogor.go.id',
+      phone: '(0251) 8324021',
+      address: 'Jl. Ir. H. Juanda No.10, RT.01/RW.01, Pabaton',
+      websiteUrl: '',
+      imagePath: 'lib/assets/images/pd/bag_ekon.jpg',
+    ),
+    _AgencyContact(
+      name: 'Bagian Hukum dan HAM',
+      email: 'bag.huk@kotabogor.go.id, bag.hukham@kotabogor.go.id, bag.hukum@kotabogor.go.id',
+      phone: '(0251) 8324021',
+      address: 'Jl. Ir. H. Juanda No.10, RT.01/RW.01, Pabaton',
+      websiteUrl: '',
+      imagePath: 'lib/assets/images/pd/bag_huk.jpg',
+    ),
+    _AgencyContact(
+      name: 'Bagian Protokol dan Komunikasi Pimpinan',
+      email: 'bag.humas@kotabogor.go.id, bag.humpro@kotabogor.go.id, bag.prokum@kotabogor.go.id',
+      phone: '(0251) 8324021',
+      address: 'Jl. Ir. H. Juanda No.10, RT.01/RW.01, Pabaton',
+      websiteUrl: '',
+      imagePath: 'lib/assets/images/pd/bag_humas.jpg',
+    ),
+    _AgencyContact(
+      name: 'Bagian Organisasi',
+      email: 'bag.org@kotabogor.go.id',
+      phone: '(0251) 8324021',
+      address: 'Jl. Ir. H. Juanda No.10, RT.01/RW.01, Pabaton',
+      websiteUrl: '',
+      imagePath: 'lib/assets/images/pd/bag_org.jpg',
+    ),
+    _AgencyContact(
+      name: 'Bagian Pemerintahan',
+      email: 'bag.pem@kotabogor.go.id',
+      phone: '(0251) 8324021',
+      address: 'Jl. Ir. H. Juanda No.10, RT.01/RW.01, Pabaton',
+      websiteUrl: '',
+      imagePath: 'lib/assets/images/pd/bag_pem.jpg',
+    ),
+    _AgencyContact(
+      name: 'Bagian Umum',
+      email: 'bag.umum@kotabogor.go.id',
+      phone: '(0251) 8324021',
+      address: 'Jl. Ir. H. Juanda No.10, RT.01/RW.01, Pabaton',
+      websiteUrl: '',
+      imagePath: 'lib/assets/images/pd/bag_umum.jpg',
+    ),
+    _AgencyContact(
+      name: 'Bagian Pengadaan Barang',
+      email: 'bag.pbj@kotabogor.go.id',
+      phone: '(0251) 8324021',
+      address: 'Jl. Ir. H. Juanda No.10, RT.01/RW.01, Pabaton',
+      websiteUrl: '',
+      imagePath: 'lib/assets/images/pd/bag_pbj.jpg',
     ),
   ];
 
@@ -182,8 +452,6 @@ class PerangkatDaerahView extends StatelessWidget {
   }
 }
 
-/// Foto Walikota di kiri, foto Wakil Walikota di kanan, masing-masing
-/// pakai `imagePath`-nya sendiri, dengan nama & jabatan di sisi dalamnya.
 class _OfficialsRow extends StatelessWidget {
   const _OfficialsRow({required this.officials});
 
@@ -267,8 +535,6 @@ class _OfficialAvatar extends StatelessWidget {
         width: 80,
         height: 80,
         fit: BoxFit.cover,
-        // Kalau asset belum ada / path salah, tampilkan placeholder
-        // abu-abu daripada bikin app crash.
         errorBuilder: (context, error, stackTrace) => Container(
           width: 80,
           height: 80,
@@ -316,9 +582,9 @@ class _AgencyCard extends StatelessWidget {
                     width: 69,
                     height: 69,
                     color: const Color(0xFFE2E8F0),
-                    child: const Icon(
-                      Icons.apartment,
-                      color: Color(0xFF9AA5AD),
+                    child: const Image(
+                      image: AssetImage('lib/assets/images/pd/bogor.png'),
+                      fit: BoxFit.cover,
                     ),
                   ),
                 ),
@@ -361,18 +627,7 @@ class _AgencyCard extends StatelessWidget {
           const SizedBox(height: 13),
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 11, vertical: 8),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(10),
-              border: Border.all(color: Colors.black.withOpacity(0.05)),
-              boxShadow: const [
-                BoxShadow(
-                  color: Colors.black26,
-                  blurRadius: 4,
-                  offset: Offset(0, 4),
-                ),
-              ],
-            ),
+            decoration: BoxDecoration(color: Colors.white),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

@@ -71,7 +71,6 @@ class NewsDetailView extends StatelessWidget {
           _buildBackButton(context),
         ],
       ),
-      bottomNavigationBar: _buildBottomNavBar(context),
     );
   }
 
@@ -237,51 +236,6 @@ class NewsDetailView extends StatelessWidget {
             const SizedBox(height: 18),
           ],
         ],
-      ),
-    );
-  }
-
-  Widget _buildBottomNavBar(BuildContext context) {
-    return SafeArea(
-      top: false,
-      child: Container(
-        height: 68,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.06),
-              blurRadius: 12,
-              offset: const Offset(0, -2),
-            ),
-          ],
-        ),
-        child: Row(
-          children: [
-            _NavBarItem(
-              icon: Icons.home_outlined,
-              label: 'Home',
-              isActive: false,
-            ),
-            _NavBarItem(
-              icon: Icons.grid_view_rounded,
-              label: 'Services',
-              isActive: true,
-              filled: true,
-            ),
-            _NavBarItem(icon: Icons.history, label: 'History', isActive: false),
-            _NavBarItem(
-              icon: Icons.notifications_none,
-              label: 'Alerts',
-              isActive: false,
-            ),
-            _NavBarItem(
-              icon: Icons.person_outline,
-              label: 'Profile',
-              isActive: false,
-            ),
-          ],
-        ),
       ),
     );
   }
