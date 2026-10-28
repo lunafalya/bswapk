@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../theme/app_colors.dart';
-import 'about_us_view.dart';
 import 'data_view.dart';
 import 'help_view.dart';
 import 'password_view.dart';
@@ -53,7 +53,7 @@ class ProfileView extends StatelessWidget {
 
                   children: [
                     _ProfileMenuTile(
-                      icon: Icons.privacy_tip_outlined,
+                      icon: Icons.person_outlined,
                       label: 'Data Diri',
                       onTap: () {
                         Navigator.of(context).push(
@@ -115,14 +115,18 @@ class ProfileView extends StatelessWidget {
                     ),
                     const SizedBox(height: 12),
                     _ProfileMenuTile(
-                      icon: Icons.contact_page_outlined,
-                      label: 'Tentang Kami',
-                      onTap: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (_) => const AboutUsView(),
-                          ),
+                      icon: Icons.public_outlined,
+                      label: 'Kunjungi Website',
+                      onTap: () async {
+                        final Uri url = Uri.parse(
+                          'https://bsw.kotabogor.go.id/',
                         );
+                        if (!await launchUrl(
+                          url,
+                          mode: LaunchMode.externalApplication,
+                        )) {
+                          throw Exception('Could not launch $url');
+                        }
                       },
                     ),
                     const SizedBox(height: 12),

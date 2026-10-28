@@ -11,6 +11,7 @@ import '../social/komunitas_view.dart';
 import '../civil/perizinan_view.dart';
 import '../social/bansos_view.dart';
 import '../facility/rute_view.dart';
+import '../facility/angkot_view.dart';
 import '../civil/berkas_view.dart';
 import '../tax/tagihan_view.dart';
 import '../gov/perangkat_daerah_view.dart';
@@ -61,6 +62,7 @@ class AllServicesView extends StatelessWidget {
       _ServiceItem('Rute', Icons.directions_bus),
       _ServiceItem('CCTV', Icons.videocam),
       _ServiceItem('WIFI', Icons.wifi),
+      _ServiceItem('Angkot', Icons.directions_bus_filled),
     ]),
     _ServiceCategory('Pemerintahan', Color(0xFF1F2937), [
       _ServiceItem('Perangkat Daerah', Icons.account_balance),
@@ -214,6 +216,9 @@ class _ServiceTile extends StatelessWidget {
         break;
       case 'Aset':
         page = const AsetView();
+        break;
+      case 'Angkot':
+        page = const AngkotView();
         break;
       default:
         // Belum ada halaman khusus -> placeholder generik.

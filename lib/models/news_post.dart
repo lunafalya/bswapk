@@ -31,11 +31,11 @@ class NewsPost {
     debugPrint('KEYS: ${json.keys.toList()}');
     debugPrint('FILE: ${json['file']}');
     return NewsPost(
-      id: _asInt(json['id']),
+      id: _asInt(json['id'] ?? json['postid']),
       judul: (json['judul']?.toString() ?? '').trim().isEmpty
           ? '(Tanpa judul)'
           : json['judul'].toString().trim(),
-      file: json['file']?.toString(),
+      file: (json['file'] ?? json['gambar'])?.toString(),
       kontenRaw: json['konten']?.toString() ?? json['isi']?.toString(),
       status: json.containsKey('status') ? json['status'].toString() : '',
       tglPublikasi: _asDate(json['tgl_publikasi'] ?? json['tanggal']),

@@ -124,3 +124,12 @@ class AsetView extends StatelessWidget {
   Widget build(BuildContext context) =>
       const _PlaceholderServiceScaffold(title: 'Aset', icon: Icons.apartment);
 }
+
+class AngkotView extends StatelessWidget {
+  const AngkotView({super.key});
+  @override
+  Widget build(BuildContext context) => const _PlaceholderServiceScaffold(
+    title: 'Angkot',
+    icon: Icons.directions_bus,
+  );
+}

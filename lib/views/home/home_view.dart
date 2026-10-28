@@ -201,6 +201,8 @@ class _HomeViewState extends State<HomeView> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               DashboardHeader(
+                backgroundImageAsset: 'lib/assets/images/alun.jpg',
+                overlayOpacity: 0.6,
                 onSearchSubmitted: (query) {},
                 onNotificationTap: () {},
                 onProfileTap: () {},
