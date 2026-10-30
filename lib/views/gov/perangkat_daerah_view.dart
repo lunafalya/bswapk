@@ -2,449 +2,494 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../theme/app_colors.dart';
+import 'perangkat_daerah_data.dart';
 
-class _Official {
-  const _Official(this.name, this.title, this.imagePath);
-  final String name;
-  final String title;
-  final String imagePath;
-}
+// Palette used on this screen.
+const _navy = Color(0xFF142450);
+const _teal = Color(0xFF1A5F7A);
+const _ink = Color(0xFF0D1C2E);
+const _muted = Color(0xFF64748B);
+const _border = Color(0xFFE2E8F0);
+const _tealSoft = Color(0x141A5F7A); // teal @ 8%
 
-class _AgencyContact {
-  const _AgencyContact({
-    required this.name,
-    required this.email,
-    required this.phone,
-    required this.address,
-    required this.websiteUrl,
-    required this.imagePath,
-  });
+const _fallbackLogo = 'lib/assets/images/pd/bogor.png';
 
-  final String name;
-  final String email;
-  final String phone;
-  final String address;
-  final String websiteUrl;
-  final String imagePath;
-}
-
-class PerangkatDaerahView extends StatelessWidget {
+class PerangkatDaerahView extends StatefulWidget {
   const PerangkatDaerahView({super.key});
 
-  static const _officials = [
-    _Official(
-      'Dedie A Rachim',
-      'Walikota Bogor',
-      'lib/assets/images/dedie.jpg',
-    ),
-    _Official(
-      'Jenal Mutaqin',
-      'Wakil Walikota Bogor',
-      'lib/assets/images/jenal.jpg',
-    ),
-  ];
+  @override
+  State<PerangkatDaerahView> createState() => _PerangkatDaerahViewState();
+}
 
-  static const _agencies = [
-    _AgencyContact(
-      name: 'Sekretariat Daerah',
-      email: 'setda@kotabogor.go.id',
-      phone: '(0251) 8324021',
-      address: 'Jl. Ir. H. Juanda No.10, RT.01/RW.01, Pabaton',
-      websiteUrl: 'https://setda.kotabogor.go.id',
-      imagePath: 'lib/assets/images/pd/setda.jpg',
-    ),
-    _AgencyContact(
-      name: 'Sekretariat DPRD',
-      email: 'setwan@kotabogor.go.id',
-      phone: '(0251) 8324021',
-      address: 'Jl. Pemuda No.25, RT.01/RW.06, Tanah Sareal',
-      websiteUrl: 'https://setwan.kotabogor.go.id',
-      imagePath: 'lib/assets/images/pd/bogor.png',
-    ),
-    _AgencyContact(
-      name: 'Inspektorat Daerah',
-      email: 'inspektorat@kotabogor.go.id',
-      phone: '(0251) 8324021',
-      address: 'Jl. Raya Pajajaran No.5, RT.02/RW.04, Baranangsiang',
-      websiteUrl: 'https://inspektorat.kotabogor.go.id',
-      imagePath: 'lib/assets/images/pd/inspektorat.jpg',
-    ),
-    _AgencyContact(
-      name: 'Dinas Sosial',
-      email: 'dinsos@kotabogor.go.id',
-      phone: '(0251) 8324021',
-      address: 'Jl. Merdeka No.142, RT.03/RW.05, Ciwaringin',
-      websiteUrl: 'https://dinsos.kotabogor.go.id',
-      imagePath: 'lib/assets/images/pd/dinsos.png',
-    ),
-    _AgencyContact(
-      name: 'Dinas Pemberdayaan Perempuan dan Perlindungan Anak',
-      email: 'dppa@kotabogor.go.id',
-      phone: '(0251) 8324021',
-      address: 'Jl. Ciwaringin No.99, RT.01/RW.09, Ciwaringin,',
-      websiteUrl: 'https://dppa.kotabogor.go.id',
-      imagePath: 'lib/assets/images/pd/dppa.jpg',
-    ),
-    _AgencyContact(
-      name: 'Dinas Kesehatan',
-      email: 'dinkes@kotabogor.go.id',
-      phone: '(0251) 8331753',
-      address:
-          'Jalan R.M. Tirto Adhi Soerjo No.3, RT.02/RW.02, '
-          'Tanah Sareal, Kota Bogor, Jawa Barat 16161',
-      websiteUrl: 'https://dinkes.kotabogor.go.id',
-      imagePath: 'lib/assets/images/pd/dinkes.jpg',
-    ),
-    _AgencyContact(
-      name: 'Dinas Pendidikan',
-      email: 'disdik@kotabogor.go.id',
-      phone: '(0251) 8321075',
-      address:
-          'Jalan Pangeran Sogiri No.7, Tanah Baru, Bogor Utara, '
-          'Kota Bogor, Jawa Barat 16154',
-      websiteUrl: 'https://disdik.kotabogor.go.id',
-      imagePath: 'lib/assets/images/pd/disdik.jpg',
-    ),
-    _AgencyContact(
-      name: 'Dinas Perhubungan',
-      email: 'dishub@kotabogor.go.id',
-      phone: '(0251) 8324021',
-      address:
-          'Jalan Raya Tajur No.5, Bogor Timur, Kota Bogor, '
-          'Jawa Barat 16144',
-      websiteUrl: 'https://dishub.kotabogor.go.id',
-      imagePath: 'lib/assets/images/pd/dishub.png',
-    ),
-    _AgencyContact(
-      name: 'Dinas Lingkungan Hidup',
-      email: 'dlh@kotabogor.go.id',
-      phone: '(0251) 8324021',
-      address:
-          'Jalan Raya Tajur No.5, Bogor Timur, Kota Bogor, '
-          'Jawa Barat 16144',
-      websiteUrl: 'https://dlh.kotabogor.go.id',
-      imagePath: 'lib/assets/images/pd/dlh.png',
-    ),
-    _AgencyContact(
-      name: 'Dinas Komunikasi dan Informatika',
-      email: 'kominfo@kotabogor.go.id',
-      phone: '(0251) 8324021',
-      address: 'Jl. Ir. H. Juanda No.10, RT.01/RW.01, Pabaton',
-      websiteUrl: 'https://kominfo.kotabogor.go.id',
-      imagePath: 'lib/assets/images/pd/kominfo.webp',
-    ),
-    _AgencyContact(
-      name: 'Dinas Penanaman Modal dan Pelayanan Terpadu Satu Pintu',
-      email: 'dpmptsp@kotabogor.go.id',
-      phone: '(0251) 8324021',
-      address: 'Jl. Kapten Muslihat No.21, RT.01/RW.01, Pabaton',
-      websiteUrl: 'https://perizinan.kotabogor.go.id',
-      imagePath: 'lib/assets/images/pd/dpmptsp.png',
-    ),
-    _AgencyContact(
-      name: 'Dinas Pemuda Dan Olahraga ',
-      email: 'dispora@kotabogor.go.id',
-      phone: '(0251) 8324021',
-      address: '	Jl. Pemuda No.4, RT.04/RW.01, Tanah Sareal',
-      websiteUrl: 'https://perizinan.kotabogor.go.id',
-      imagePath: 'lib/assets/images/pd/dispora.jpg',
-    ),
-    _AgencyContact(
-      name: 'Dinas Pariwisata dan Kebudayaan Kota Bogor',
-      email: 'disbudpar@kotabogor.go.id',
-      phone: '(0251) 8324021',
-      address: 'Jalan Pandu Raya No. 45, Tegal Gundil',
-      websiteUrl: 'https://disparbud.kotabogor.go.id/',
-      imagePath: 'lib/assets/images/pd/dispudbar.jpg',
-    ),
-    _AgencyContact(
-      name: 'Dinas Pemadam Kebakaran dan Penyelamatan',
-      email: 'dpkp@kotabogor.go.id',
-      phone: '(0251) 8324021',
-      address: 'Jl. Raya Pajajaran No.01 raya, RT.07/RW.02, Sukasari',
-      websiteUrl: 'https://damkar.kotabogor.go.id/',
-      imagePath: 'lib/assets/images/pd/dpkp.jpg',
-    ),
-    _AgencyContact(
-      name: 'Satuan Polisi Pamong Praja Kota Bogor',
-      email: 'satpolpp@kotabogor.go.id',
-      phone: '(0251) 8324021',
-      address: 'Jl. Raya Pajajaran No.121, RT.04/RW.03, Bantarjati',
-      websiteUrl: 'https://satpolpp.kotabogor.go.id/',
-      imagePath: 'lib/assets/images/pd/satpolpp.jpeg',
-    ),
-    _AgencyContact(
-      name: 'Dinas Pekerjaan Umum dan Penataan Ruang Kota Bogor',
-      email: 'dpupr@kotabogor.go.id',
-      phone: '(0251) 8324021',
-      address: 'Jalan Pool Bina Marga No.2, Tanah Sereal, RT.02/RW.01',
-      websiteUrl: 'https://dpupr.kotabogor.go.id/',
-      imagePath: 'lib/assets/images/pd/bogor.png',
-    ),
-    _AgencyContact(
-      name: 'Dinas Arsip dan Perpustakaan Kota Bogor',
-      email: 'diskarpus@kotabogor.go.id',
-      phone: '(0251) 8324021',
-      address: 'JL Medika 1A, No. 2, Perum Menteng Asri, RT.02/RW.20',
-      websiteUrl: 'https://diarpus.kotabogor.go.id/',
-      imagePath: 'lib/assets/images/pd/diskarpus.jpg',
-    ),
-    _AgencyContact(
-      name: 'Dinas Tenaga Kerja Kota Bogor',
-      email: 'disnakertrans@kotabogor.go.id, disnakersostrans@kotabogor.go.id',
-      phone: '(0251) 8324021',
-      address: 'Jl. DR. Sumeru No.33, RT.01/RW.02, Menteng',
-      websiteUrl: 'https://disnaker.kotabogor.go.id/',
-      imagePath: 'lib/assets/images/pd/disnaker.jpg',
-    ),
-    _AgencyContact(
-      name: 'Dinas Kependudukan dan Pencatatan Sipil Kota Bogor',
-      email: 'disdukcapil@kotabogor.go.id',
-      phone: '(0251) 8324021',
-      address: 'Jl. Achmad Adnawijaya No.45A, RT.01/RW.16, Tegal Gundil',
-      websiteUrl: 'https://disdukcapil.kotabogor.go.id/',
-      imagePath: 'lib/assets/images/pd/dukcapil.png',
-    ),
-    _AgencyContact(
-      name: 'Dinas Pengendalian Penduduk dan Keluarga Berencana Kota Bogor',
-      email: 'dppkb@kotabogor.go.id',
-      phone: '(0251) 8324021',
-      address: 'Jl. Senam No.1, RT.04/RW.02, Tanah Sareal',
-      websiteUrl: 'https://dppkb.kotabogor.go.id/',
-      imagePath: 'lib/assets/images/pd/dppkb.jpg',
-    ),
-    _AgencyContact(
-      name: 'Dinas Koperasi, Usaha Kecil,dan Menengah, Perdagangan dan Perindustrian Kota Bogor',
-      email: 'dinkumkmdagin@kotabogor.go.id',
-      phone: '(0251) 8324021',
-      address: 'Jl. Dadali No.4, RT.03/RW.06, Tanah Sareal',
-      websiteUrl: 'https://dinkumkmdagin.kotabogor.go.id/',
-      imagePath: 'lib/assets/images/pd/dinkukmdagin.jpg',
-    ),
-    _AgencyContact(
-      name: 'Dinas Perumahan dan Pemukiman Kota Bogor',
-      email: 'disperumkim@kotabogor.go.id',
-      phone: '(0251) 8324021',
-      address: 'Jl. Pengadilan No.8a, RT.03/RW.01, Pabaton',
-      websiteUrl: 'https://disperumkim.kotabogor.go.id/',
-      imagePath: 'lib/assets/images/pd/disperumkim.jpg',
-    ),
-    _AgencyContact(
-      name: 'Badan Perencanaan Pembangunan Daerah Kota Bogor',
-      email: 'bapperida@kotabogor.go.id',
-      phone: '(0251) 8324021',
-      address: 'Jl. Kapten Muslihat No.21, RT.01/RW.01, Pabaton',
-      websiteUrl: 'https://bapperida.kotabogor.go.id/',
-      imagePath: 'lib/assets/images/pd/bapperida.jpg',
-    ),
-    _AgencyContact(
-      name: 'Badan Kepegawaian dan Pengembangan Sumber Daya Manusia Kota Bogor',
-      email: 'bkpsdm@kotabogor.go.id, bkpsda@kotabogor.go.id',
-      phone: '(0251) 8324021',
-      address: 'Jl. Julang 1 No.7A, RT.02/RW.4, Tanah Sareal',
-      websiteUrl: 'https://bkpsdm.kotabogor.go.id/',
-      imagePath: 'lib/assets/images/pd/bkpsdm.jpg',
-    ),
-    _AgencyContact(
-      name: 'Badan Keuangan dan Aset Daerah Kota Bogor',
-      email: 'bkad@kotabogor.go.id',
-      phone: '(0251) 8324021',
-      address: 'Jl. Pemuda No.31, RT.01/RW.06, Tanah Sareal',
-      websiteUrl: 'https://bkad.kotabogor.go.id/',
-      imagePath: 'lib/assets/images/pd/bkad.jpg',
-    ),
-    _AgencyContact(
-      name: 'Badan Pendapatan Daerah Kota Bogor',
-      email: 'bapenda@kotabogor.go.id',
-      phone: '(0251) 8324021',
-      address: 'Jl. Pemuda No.31, RT.01/RW.06, Tanah Sareal',
-      websiteUrl: 'https://bapenda.kotabogor.go.id/',
-      imagePath: 'lib/assets/images/pd/bapenda.jpg',
-    ),
-    _AgencyContact(
-      name: 'Badan Kesatuan Bangsa dan Politik Kota Bogor',
-      email: 'kesbangpol@kotabogor.go.id',
-      phone: '(0251) 8324021',
-      address: 'Jl. Kesehatan No.2, RT.02/RW.02, Tanah Sareal',
-      websiteUrl: 'https://kesbangpol.kotabogor.go.id/',
-      imagePath: 'lib/assets/images/pd/kesbangpol.jpg',
-    ),
-    _AgencyContact(
-      name: 'Badan Penanggulangan Bencana Daerah Kota Bogor',
-      email: 'bpbd@kotabogor.go.id',
-      phone: '(0251) 8324021',
-      address: 'Jl. Pool Bina Marga No.2, RT.02/RW.01, Kayu Manis',
-      websiteUrl: 'https://bpbd.kotabogor.go.id/',
-      imagePath: 'lib/assets/images/pd/bpbd.jpg',
-    ),
-    _AgencyContact(
-      name: 'RSUD Kota Bogor',
-      email: 'rsud@kotabogor.go.id',
-      phone: '(0251) 8324021',
-      address: 'Jl. DR. Sumeru No.120, RT.03/RW.20, Menteng',
-      websiteUrl: 'https://rsud.kotabogor.go.id/',
-      imagePath: 'lib/assets/images/pd/rsud.jpg',
-    ),
-    _AgencyContact(
-      name: 'Kecamatan Bogor Utara Kota Bogor',
-      email: 'kec.bout@kotabogor.go.id',
-      phone: '(0251) 8324021',
-      address: 'Jl. Gagalur II No. 2',
-      websiteUrl: 'https://kecbogorutara.kotabogor.go.id/',
-      imagePath: 'lib/assets/images/pd/kecbogorutara.jpg',
-    ),
-    _AgencyContact(
-      name: 'Kecamatan Bogor Selatan Kota Bogor',
-      email: 'kec.bosel@kotabogor.go.id',
-      phone: '(0251) 8324021',
-      address: 'Jl. Layungsari III No.41',
-      websiteUrl: 'https://kecbogorselatan.kotabogor.go.id/',
-      imagePath: 'lib/assets/images/pd/kecbogorselatan.jpg',
-    ),
-    _AgencyContact(
-      name: 'Kecamatan Bogor Timur Kota Bogor',
-      email: 'kec.botim@kotabogor.go.id',
-      phone: '(0251) 8324021',
-      address: 'Jl. Raya Pajajaran No.16, Baranangsiang',
-      websiteUrl: 'https://kecbogortimur.kotabogor.go.id/',
-      imagePath: 'lib/assets/images/pd/kecbogortimur.jpg',
-    ),
-    _AgencyContact(
-      name: 'Kecamatan Bogor Barat Kota Bogor',
-      email: 'kec.bobar@kotabogor.go.id',
-      phone: '(0251) 8324021',
-      address: 'Jl. KH. TB. M. FALAK No.319, Loji',
-      websiteUrl: 'https://kecbogorbarat.kotabogor.go.id/',
-      imagePath: 'lib/assets/images/pd/kecbogorbarat.jpg',
-    ),
-    _AgencyContact(
-      name: 'Kecamatan Bogor Tengah Kota Bogor',
-      email: 'kec.boteng@kotabogor.go.id',
-      phone: '(0251) 8324021',
-      address: 'Jl. Kantin No. 02',
-      websiteUrl: 'https://kecbogortengah.kotabogor.go.id/',
-      imagePath: 'lib/assets/images/pd/kecbogortengah.jpg',
-    ),
-    _AgencyContact(
-      name: 'Kecamatan Tanah Sareal Kota Bogor',
-      email: 'kec.tansar@kotabogor.go.id',
-      phone: '(0251) 8324021',
-      address: 'Jalan Kebon Pedes No. 20',
-      websiteUrl: 'https://kectanahsareal.kotabogor.go.id/',
-      imagePath: 'lib/assets/images/pd/kectanahsareal.jpg',
-    ),
-    _AgencyContact(
-      name: 'Bagian Administrasi Pembagunan',
-      email: 'bag.adalbang@kotabogor.go.id, bag.adbang@kotabogor.go.id, bag.dalprog@kotabogor.go.id',
-      phone: '(0251) 8324021',
-      address: 'Jl. Ir. H. Juanda No.10, RT.01/RW.01, Pabaton',
-      websiteUrl: '',
-      imagePath: 'lib/assets/images/pd/bag_adalbang.jpg',
-    ),
-    _AgencyContact(
-      name: 'Bagian Kesejahteraan Masyarakat',
-      email: 'bag.kesra@kotabogor.go.id, bag.adkesra@kotabogor.go.id',
-      phone: '(0251) 8324021',
-      address: 'Jl. Ir. H. Juanda No.10, RT.01/RW.01, Pabaton',
-      websiteUrl: '',
-      imagePath: 'lib/assets/images/pd/bag_kesra.jpg',
-    ),
-    _AgencyContact(
-      name: 'Bagian Perekonomian',
-      email: 'bag.ekon@kotabogor.go.id, bag.ekonomi@kotabogor.go.id',
-      phone: '(0251) 8324021',
-      address: 'Jl. Ir. H. Juanda No.10, RT.01/RW.01, Pabaton',
-      websiteUrl: '',
-      imagePath: 'lib/assets/images/pd/bag_ekon.jpg',
-    ),
-    _AgencyContact(
-      name: 'Bagian Hukum dan HAM',
-      email: 'bag.huk@kotabogor.go.id, bag.hukham@kotabogor.go.id, bag.hukum@kotabogor.go.id',
-      phone: '(0251) 8324021',
-      address: 'Jl. Ir. H. Juanda No.10, RT.01/RW.01, Pabaton',
-      websiteUrl: '',
-      imagePath: 'lib/assets/images/pd/bag_huk.jpg',
-    ),
-    _AgencyContact(
-      name: 'Bagian Protokol dan Komunikasi Pimpinan',
-      email: 'bag.humas@kotabogor.go.id, bag.humpro@kotabogor.go.id, bag.prokum@kotabogor.go.id',
-      phone: '(0251) 8324021',
-      address: 'Jl. Ir. H. Juanda No.10, RT.01/RW.01, Pabaton',
-      websiteUrl: '',
-      imagePath: 'lib/assets/images/pd/bag_humas.jpg',
-    ),
-    _AgencyContact(
-      name: 'Bagian Organisasi',
-      email: 'bag.org@kotabogor.go.id',
-      phone: '(0251) 8324021',
-      address: 'Jl. Ir. H. Juanda No.10, RT.01/RW.01, Pabaton',
-      websiteUrl: '',
-      imagePath: 'lib/assets/images/pd/bag_org.jpg',
-    ),
-    _AgencyContact(
-      name: 'Bagian Pemerintahan',
-      email: 'bag.pem@kotabogor.go.id',
-      phone: '(0251) 8324021',
-      address: 'Jl. Ir. H. Juanda No.10, RT.01/RW.01, Pabaton',
-      websiteUrl: '',
-      imagePath: 'lib/assets/images/pd/bag_pem.jpg',
-    ),
-    _AgencyContact(
-      name: 'Bagian Umum',
-      email: 'bag.umum@kotabogor.go.id',
-      phone: '(0251) 8324021',
-      address: 'Jl. Ir. H. Juanda No.10, RT.01/RW.01, Pabaton',
-      websiteUrl: '',
-      imagePath: 'lib/assets/images/pd/bag_umum.jpg',
-    ),
-    _AgencyContact(
-      name: 'Bagian Pengadaan Barang',
-      email: 'bag.pbj@kotabogor.go.id',
-      phone: '(0251) 8324021',
-      address: 'Jl. Ir. H. Juanda No.10, RT.01/RW.01, Pabaton',
-      websiteUrl: '',
-      imagePath: 'lib/assets/images/pd/bag_pbj.jpg',
-    ),
-  ];
+class _PerangkatDaerahViewState extends State<PerangkatDaerahView> {
+  final _searchController = TextEditingController();
+  String _query = '';
 
-  Future<void> _openWebsite(BuildContext context, String url) async {
-    final launched = await launchUrl(
-      Uri.parse(url),
-      mode: LaunchMode.externalApplication,
-    );
-    if (!launched && context.mounted) {
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
+  }
+
+  List<AgencyContact> get _filtered {
+    final q = _query.trim().toLowerCase();
+    if (q.isEmpty) return agencies;
+    return agencies.where((a) => a.name.toLowerCase().contains(q)).toList();
+  }
+
+  void _onQueryChanged(String value) => setState(() => _query = value);
+
+  void _clearQuery() {
+    _searchController.clear();
+    setState(() => _query = '');
+  }
+
+  Future<void> _open(Uri uri) async {
+    var launched = false;
+    try {
+      launched = await launchUrl(uri, mode: LaunchMode.externalApplication);
+    } catch (_) {}
+    if (!launched && mounted) {
       ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text('Tidak bisa membuka $url')));
+          .showSnackBar(SnackBar(content: Text('Tidak bisa membuka $uri')));
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    final items = _filtered;
+
     return Scaffold(
       backgroundColor: AppColors.background,
       appBar: AppBar(
         backgroundColor: AppColors.background,
         elevation: 0,
+        scrolledUnderElevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: AppColors.onSurface),
           onPressed: () => Navigator.of(context).maybePop(),
         ),
+        title: const Text(
+          'Perangkat Daerah',
+          style: TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.w700,
+            color: AppColors.onSurface,
+          ),
+        ),
       ),
-      body: SafeArea(
-        top: false,
-        bottom: false,
-        child: ListView(
-          padding: const EdgeInsets.fromLTRB(16, 8, 16, 24),
-          children: [
-            _OfficialsRow(officials: _officials),
-            const SizedBox(height: 20),
-            for (final agency in _agencies) ...[
-              _AgencyCard(
-                agency: agency,
-                onWebsiteTap: () => _openWebsite(context, agency.websiteUrl),
+      body: CustomScrollView(
+        keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+        slivers: [
+          const SliverPadding(
+            padding: EdgeInsets.fromLTRB(16, 8, 16, 0),
+            sliver: SliverToBoxAdapter(
+              child: _LeadersCard(officials: officials),
+            ),
+          ),
+          SliverPadding(
+            padding: const EdgeInsets.fromLTRB(16, 20, 16, 0),
+            sliver: SliverToBoxAdapter(
+              child: _SearchField(
+                controller: _searchController,
+                showClear: _query.isNotEmpty,
+                onChanged: _onQueryChanged,
+                onClear: _clearQuery,
               ),
-              const SizedBox(height: 16),
+            ),
+          ),
+          SliverPadding(
+            padding: const EdgeInsets.fromLTRB(16, 20, 16, 12),
+            sliver: SliverToBoxAdapter(
+              child: _ListHeading(count: items.length),
+            ),
+          ),
+          if (items.isEmpty)
+            const SliverToBoxAdapter(child: _EmptyState())
+          else
+            SliverPadding(
+              padding: const EdgeInsets.fromLTRB(16, 0, 16, 24),
+              sliver: SliverList(
+                delegate: SliverChildBuilderDelegate(
+                  (context, index) => Padding(
+                    padding: const EdgeInsets.only(bottom: 12),
+                    child: _AgencyCard(agency: items[index], onOpen: _open),
+                  ),
+                  childCount: items.length,
+                ),
+              ),
+            ),
+        ],
+      ),
+    );
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Pimpinan (Walikota & Wakil Walikota)
+// ---------------------------------------------------------------------------
+
+class _LeadersCard extends StatelessWidget {
+  const _LeadersCard({required this.officials});
+
+  final List<Official> officials;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.fromLTRB(16, 18, 16, 20),
+      decoration: BoxDecoration(
+        gradient: const LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [_navy, _teal],
+        ),
+        borderRadius: BorderRadius.circular(24),
+        boxShadow: const [
+          BoxShadow(
+            color: Color(0x40142450),
+            blurRadius: 16,
+            offset: Offset(0, 8),
+          ),
+        ],
+      ),
+      child: Column(
+        children: [
+          const Text(
+            'PIMPINAN KOTA BOGOR',
+            style: TextStyle(
+              fontSize: 11,
+              fontWeight: FontWeight.w700,
+              letterSpacing: 1.2,
+              color: Colors.white70,
+            ),
+          ),
+          const SizedBox(height: 16),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              for (final official in officials)
+                Expanded(child: _Leader(official: official)),
             ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _Leader extends StatelessWidget {
+  const _Leader({required this.official});
+
+  final Official official;
+
+  static const _size = 76.0;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Container(
+          padding: const EdgeInsets.all(3),
+          decoration: const BoxDecoration(
+            color: Colors.white,
+            shape: BoxShape.circle,
+          ),
+          child: ClipOval(
+            child: Image.asset(
+              official.imagePath,
+              width: _size,
+              height: _size,
+              fit: BoxFit.cover,
+              errorBuilder: (context, error, stackTrace) => Container(
+                width: _size,
+                height: _size,
+                color: _border,
+                child: const Icon(Icons.person, size: 36, color: _muted),
+              ),
+            ),
+          ),
+        ),
+        const SizedBox(height: 10),
+        Text(
+          official.name,
+          textAlign: TextAlign.center,
+          maxLines: 2,
+          overflow: TextOverflow.ellipsis,
+          style: const TextStyle(
+            fontSize: 14,
+            fontWeight: FontWeight.w700,
+            color: Colors.white,
+          ),
+        ),
+        const SizedBox(height: 2),
+        Text(
+          official.title,
+          textAlign: TextAlign.center,
+          style: const TextStyle(fontSize: 12, color: Colors.white70),
+        ),
+      ],
+    );
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Search + heading + empty state
+// ---------------------------------------------------------------------------
+
+class _SearchField extends StatelessWidget {
+  const _SearchField({
+    required this.controller,
+    required this.showClear,
+    required this.onChanged,
+    required this.onClear,
+  });
+
+  final TextEditingController controller;
+  final bool showClear;
+  final ValueChanged<String> onChanged;
+  final VoidCallback onClear;
+
+  @override
+  Widget build(BuildContext context) {
+    OutlineInputBorder border(Color color) => OutlineInputBorder(
+      borderRadius: BorderRadius.circular(14),
+      borderSide: BorderSide(color: color),
+    );
+
+    return TextField(
+      controller: controller,
+      onChanged: onChanged,
+      textInputAction: TextInputAction.search,
+      style: const TextStyle(fontSize: 14, color: _ink),
+      decoration: InputDecoration(
+        hintText: 'Cari perangkat daerah...',
+        hintStyle: const TextStyle(fontSize: 14, color: _muted),
+        prefixIcon: const Icon(Icons.search, color: _teal),
+        suffixIcon: showClear
+            ? IconButton(
+                icon: const Icon(Icons.close, size: 20, color: _muted),
+                onPressed: onClear,
+              )
+            : null,
+        filled: true,
+        fillColor: Colors.white,
+        contentPadding: const EdgeInsets.symmetric(vertical: 14),
+        border: border(_border),
+        enabledBorder: border(_border),
+        focusedBorder: border(_teal),
+      ),
+    );
+  }
+}
+
+class _ListHeading extends StatelessWidget {
+  const _ListHeading({required this.count});
+
+  final int count;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        const Expanded(
+          child: Text(
+            'Daftar Perangkat Daerah',
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w700,
+              color: _ink,
+            ),
+          ),
+        ),
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+          decoration: BoxDecoration(
+            color: _tealSoft,
+            borderRadius: BorderRadius.circular(999),
+          ),
+          child: Text(
+            '$count',
+            style: const TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.w700,
+              color: _teal,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _EmptyState extends StatelessWidget {
+  const _EmptyState();
+
+  @override
+  Widget build(BuildContext context) {
+    return const Padding(
+      padding: EdgeInsets.symmetric(vertical: 48),
+      child: Column(
+        children: [
+          Icon(Icons.search_off, size: 40, color: _muted),
+          SizedBox(height: 12),
+          Text(
+            'Perangkat daerah tidak ditemukan',
+            style: TextStyle(fontSize: 14, color: _muted),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Kartu perangkat daerah
+// ---------------------------------------------------------------------------
+
+class _AgencyCard extends StatelessWidget {
+  const _AgencyCard({required this.agency, required this.onOpen});
+
+  final AgencyContact agency;
+  final ValueChanged<Uri> onOpen;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: _border),
+        boxShadow: const [
+          BoxShadow(
+            color: Color(0x0F0D1C2E),
+            blurRadius: 12,
+            offset: Offset(0, 4),
+          ),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              _AgencyLogo(imagePath: agency.imagePath),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Text(
+                  agency.name,
+                  maxLines: 3,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(
+                    fontSize: 15,
+                    height: 1.3,
+                    fontWeight: FontWeight.w700,
+                    color: _ink,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 14),
+          const Divider(height: 1, color: _border),
+          const SizedBox(height: 10),
+          for (final email in agency.emails)
+            _ContactRow(
+              icon: Icons.mail_outline,
+              text: email,
+              onTap: () => onOpen(Uri(scheme: 'mailto', path: email)),
+            ),
+          _ContactRow(
+            icon: Icons.phone_outlined,
+            text: agency.phone,
+            onTap: () => onOpen(Uri(scheme: 'tel', path: agency.phoneDialable)),
+          ),
+          _ContactRow(icon: Icons.location_on_outlined, text: agency.address),
+          if (agency.hasWebsite) ...[
+            const SizedBox(height: 6),
+            Align(
+              alignment: Alignment.centerRight,
+              child: _WebsiteButton(
+                onPressed: () => onOpen(Uri.parse(agency.websiteUrl.trim())),
+              ),
+            ),
+          ],
+        ],
+      ),
+    );
+  }
+}
+
+class _AgencyLogo extends StatelessWidget {
+  const _AgencyLogo({required this.imagePath});
+
+  final String imagePath;
+
+  static const _size = 60.0;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: _size,
+      height: _size,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: _border),
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(15),
+        child: Image.asset(
+          imagePath,
+          fit: BoxFit.cover,
+          errorBuilder: (context, error, stackTrace) => Image.asset(
+            _fallbackLogo,
+            fit: BoxFit.cover,
+            errorBuilder: (context, error, stackTrace) =>
+                const Icon(Icons.account_balance, color: _muted),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+/// One line of contact info with a leading icon. Tappable rows are shown in
+/// the accent color; plain rows (address) are muted.
+class _ContactRow extends StatelessWidget {
+  const _ContactRow({required this.icon, required this.text, this.onTap});
+
+  final IconData icon;
+  final String text;
+  final VoidCallback? onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final tappable = onTap != null;
+
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(8),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 4),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Icon(icon, size: 18, color: _teal),
+            const SizedBox(width: 10),
+            Expanded(
+              child: Text(
+                text,
+                style: TextStyle(
+                  fontSize: 13,
+                  height: 1.4,
+                  fontWeight: tappable ? FontWeight.w600 : FontWeight.w400,
+                  color: tappable ? _teal : _muted,
+                ),
+              ),
+            ),
           ],
         ),
       ),
@@ -452,221 +497,24 @@ class PerangkatDaerahView extends StatelessWidget {
   }
 }
 
-class _OfficialsRow extends StatelessWidget {
-  const _OfficialsRow({required this.officials});
+class _WebsiteButton extends StatelessWidget {
+  const _WebsiteButton({required this.onPressed});
 
-  final List<_Official> officials;
-
-  @override
-  Widget build(BuildContext context) {
-    final walikota = officials[0];
-    final wakil = officials[1];
-
-    return Row(
-      children: [
-        _OfficialAvatar(imagePath: walikota.imagePath),
-        const SizedBox(width: 10),
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                walikota.name.toUpperCase(),
-                style: const TextStyle(
-                  fontSize: 12,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.black,
-                ),
-              ),
-              Text(
-                walikota.title.toUpperCase(),
-                style: const TextStyle(
-                  fontSize: 10,
-                  fontWeight: FontWeight.w600,
-                  color: Color(0xB30D1C2E),
-                ),
-              ),
-            ],
-          ),
-        ),
-        const SizedBox(width: 8),
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              Text(
-                wakil.name.toUpperCase(),
-                textAlign: TextAlign.right,
-                style: const TextStyle(
-                  fontSize: 12,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.black,
-                ),
-              ),
-              Text(
-                wakil.title.toUpperCase(),
-                textAlign: TextAlign.right,
-                style: const TextStyle(
-                  fontSize: 10,
-                  fontWeight: FontWeight.w600,
-                  color: Color(0xB30D1C2E),
-                ),
-              ),
-            ],
-          ),
-        ),
-        const SizedBox(width: 10),
-        _OfficialAvatar(imagePath: wakil.imagePath),
-      ],
-    );
-  }
-}
-
-class _OfficialAvatar extends StatelessWidget {
-  const _OfficialAvatar({required this.imagePath});
-
-  final String imagePath;
+  final VoidCallback onPressed;
 
   @override
   Widget build(BuildContext context) {
-    return ClipOval(
-      child: Image.asset(
-        imagePath,
-        width: 80,
-        height: 80,
-        fit: BoxFit.cover,
-        errorBuilder: (context, error, stackTrace) => Container(
-          width: 80,
-          height: 80,
-          color: const Color(0xFFE2E8F0),
-          child: const Icon(Icons.person, color: Color(0xFF9AA5AD)),
-        ),
-      ),
-    );
-  }
-}
-
-/// Kartu satu dinas: avatar bulat (pakai `agency.imagePath`), nama, email,
-/// telepon, dan kartu alamat kecil di bawahnya dengan link "Kunjungi Website".
-class _AgencyCard extends StatelessWidget {
-  const _AgencyCard({required this.agency, required this.onWebsiteTap});
-
-  final _AgencyContact agency;
-  final VoidCallback onWebsiteTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(19),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: Colors.black.withOpacity(0.1)),
-        boxShadow: const [
-          BoxShadow(color: Colors.black26, blurRadius: 4, offset: Offset(0, 4)),
-        ],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              ClipOval(
-                child: Image.asset(
-                  agency.imagePath,
-                  width: 69,
-                  height: 69,
-                  fit: BoxFit.cover,
-                  errorBuilder: (context, error, stackTrace) => Container(
-                    width: 69,
-                    height: 69,
-                    color: const Color(0xFFE2E8F0),
-                    child: const Image(
-                      image: AssetImage('lib/assets/images/pd/bogor.png'),
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(width: 11),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      agency.name,
-                      style: const TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.black,
-                      ),
-                    ),
-                    const SizedBox(height: 5),
-                    Text(
-                      agency.email,
-                      style: const TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w600,
-                        color: Color(0xB30D1C2E),
-                      ),
-                    ),
-                    const SizedBox(height: 5),
-                    Text(
-                      agency.phone,
-                      style: const TextStyle(
-                        fontSize: 12,
-                        color: Color(0x99000000),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 13),
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 11, vertical: 8),
-            decoration: BoxDecoration(color: Colors.white),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text(
-                  'Kota Bogor',
-                  style: TextStyle(
-                    fontSize: 12,
-                    fontWeight: FontWeight.w600,
-                    color: Color(0xFF142450),
-                  ),
-                ),
-                const SizedBox(height: 6),
-                Text(
-                  agency.address,
-                  style: const TextStyle(
-                    fontSize: 10,
-                    color: Color(0x99000000),
-                    height: 1.5,
-                  ),
-                ),
-                const SizedBox(height: 6),
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: InkWell(
-                    onTap: onWebsiteTap,
-                    child: const Text(
-                      'Kunjungi Website →',
-                      style: TextStyle(
-                        fontSize: 8,
-                        color: Color(0xFF1A5F7A),
-                        decoration: TextDecoration.underline,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
+    return TextButton.icon(
+      onPressed: onPressed,
+      icon: const Icon(Icons.open_in_new, size: 16),
+      label: const Text('Kunjungi Website'),
+      style: TextButton.styleFrom(
+        foregroundColor: _teal,
+        textStyle: const TextStyle(fontSize: 12, fontWeight: FontWeight.w700),
+        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+        minimumSize: Size.zero,
+        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+        shape: const StadiumBorder(),
       ),
     );
   }

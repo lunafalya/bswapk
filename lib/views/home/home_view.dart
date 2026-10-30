@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:apkbsw/views/gov/perangkat_daerah_view.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -18,6 +19,10 @@ import '../facility/wifi_view.dart';
 import '../service/all_service_view.dart';
 import '../news/news_view.dart';
 import '../service/weather_service.dart';
+import '../health/bpjs_view.dart';
+import '../facility/rute_view.dart';
+import '../civil/perizinan_view.dart';
+import '../tax/tagihan_view.dart';
 
 import 'package:flutter/services.dart';
 
@@ -116,25 +121,35 @@ class _HomeViewState extends State<HomeView> {
 
   List<QuickService> get _quickServices => [
     QuickService(
-      label: 'Utilities',
-      icon: Icons.bolt,
+      label: 'Perangkat Daerah',
+      icon: Icons.account_balance,
       iconColor: AppColors.primary,
       backgroundColor: Colors.blue.shade50,
-      onTap: () {},
+      onTap: () {
+        Navigator.of(
+          context,
+        ).push(MaterialPageRoute(builder: (_) => const PerangkatDaerahView()));
+      },
     ),
     QuickService(
       label: 'Rute',
       icon: Icons.directions_bus,
       iconColor: const Color(0xFF2E7D32),
       backgroundColor: Colors.green.shade50,
-      onTap: () {},
+      onTap: () {
+        Navigator.of(context)
+            .push(MaterialPageRoute(builder: (_) => const RuteView()));
+      },
     ),
     QuickService(
       label: 'Perizinan',
       icon: Icons.description,
       iconColor: const Color(0xFFF57F17),
       backgroundColor: Colors.yellow.shade50,
-      onTap: () {},
+      onTap: () {
+        Navigator.of(context)
+            .push(MaterialPageRoute(builder: (_) => const PerizinanView()));
+      },
     ),
     QuickService(
       label: 'BPJS',
@@ -142,8 +157,8 @@ class _HomeViewState extends State<HomeView> {
       iconColor: const Color(0xFFC62828),
       backgroundColor: Colors.red.shade50,
       onTap: () {
-        //   Navigator.of(context)
-        //       .push(MaterialPageRoute(builder: (_) => const HealthView()));
+        Navigator.of(context)
+            .push(MaterialPageRoute(builder: (_) => const BpjsView()));
       },
     ),
     QuickService(
@@ -161,7 +176,10 @@ class _HomeViewState extends State<HomeView> {
       icon: Icons.payments,
       iconColor: const Color(0xFF283593),
       backgroundColor: Colors.indigo.shade50,
-      onTap: () {},
+      onTap: () {
+        Navigator.of(context)
+            .push(MaterialPageRoute(builder: (_) => const TagihanView()));
+      },
     ),
     QuickService(
       label: 'CCTV',
@@ -230,7 +248,11 @@ class _HomeViewState extends State<HomeView> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          final Uri whatsappUrl = Uri.parse("https://wa.me/6281122882233");
+          final Uri whatsappUrl = Uri.https('api.whatsapp.com', '/send', {
+            'phone': '6281122882233',
+            'text': 'Halo, saya ingin bertanya tentang layanan BSW',
+          });
+          // final Uri whatsappUrl = Uri.parse("https://wa.me/6281122882233");
           try {
             final launched = await launchUrl(
               whatsappUrl,
